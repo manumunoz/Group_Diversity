@@ -26,12 +26,38 @@
             and the <b>minimum pick</b> is:
             <br>
             <small>{% formfield player.test_minimum label="" %}</small>
-            <button type="button" class="btn btn-danger" onclick="showresult('1')">Calculate</button>
+            <a href=“#” class=“btn” id=“btn-calc" onclick="showresult('1')">Calcular</a>
             <br><br>
             <b>You earn</b> (60 - your pick + 2 x minimum pick):
 {#            17 + 13#}
             <br><br>
             <h4>69 {{ Constants.exp_currency }}</h4>
+
+            <table border="1" cellpadding="5" cellspacing="5" width="600">
+            <tr align="center">
+            <td>First number</td>
+            <td>Second Number</td>
+            <td>Result</td>
+            </tr>
+            <tr align="center">
+            <td><input name="test_effort" type="text" size=10 id='test_effort'/></td>
+            <td><input name="test_minimum" type="text" size=10 id='test_minimum'/></td>
+            <td> <input type="text" id='result' readonly ></td>
+            </tr>
+            <tr>
+            <td colspan="3">
+            <button onclick="showresult('1')">+</button>
+            <button onclick="showresult('2')">-</button>
+            <button onclick="showresult('3')">*</button>
+            <button onclick="showresult('4')">/</button>
+            <button onclick="showresult('5')">%</button>
+            </td>
+            </tr>
+
+            </table>
+
+
+
 
 
             {##}
@@ -86,9 +112,9 @@
 
 {% block scripts %}
 <script src="calculator.js" type="text/javascript">
-var showresult = function(choise){
-var n1=parseFloat(document.getElementById('test_effort').value);
-var n2=parseFloat(document.getElementById('test_minimum').value);
+function showresult(choise){
+var test_effort=parseFloat(document.getElementById('test_effort').value);
+var test_effort=parseFloat(document.getElementById('test_effort').value);
 var r;
 var c=choise;
 
@@ -97,10 +123,21 @@ switch(c)
 	case '1':
 		r=n1+n2;
 		break;
+	case '2':
+		r=n1-n2;
+		break;
+	case '3':
+		r=n1*n2;
+		break;
+	case '4':
+		r=n1/n2;
+		break;
+	case '5':
+		r=n2*100/n1;
+		break;
 	default:
 		break;
 	}
-	console.log(r);
 document.getElementById('result').value=r;
 }
 </script>

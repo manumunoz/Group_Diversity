@@ -57,8 +57,8 @@
 {% endblock %}
 
 
-<!-- JavaScript -->
 {% block scripts %}
+<!-- JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.1.0/cytoscape.js"></script>
     <script>
         var jsonnet = JSON.parse('{{group.network_data|safe}}');
@@ -164,8 +164,8 @@
 {% endblock %}
 
 
-<!-- CSS -->
 {% block styles %}
+<!-- CSS -->
     <style type="text/css">
         #cy {
             width: 100%;
