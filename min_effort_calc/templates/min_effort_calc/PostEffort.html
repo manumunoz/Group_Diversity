@@ -1,0 +1,75 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 border rounded p-1 mb-0" id="dark_bg">
+            <h1 id="light_txt"> Part {{ Constants.part_pre_min }}. <span id="bright_txt">Picking Numbers</span></h1>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <!-- Coordination Outcome -->
+    <div class="row">
+        <div class="col-md-12 border border-dark rounded p-3 mb-1" id="light_bg">
+            <h6 id="dark_txt">
+                At the end of the experiment you will be informed of the numbers chosen by all players in your group,
+                and your earnings from Part {{ Constants.part_pre_min }}
+            </h6>
+            <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Continuar </button>
+          <br><br>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        #cy {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        #light_bg{
+            background-color: #CFD8DC;
+        }
+        #medium_bg{
+            background-color: #37474F;
+        }
+
+        #dark_bg{
+            background-color: #263238;
+        }
+        #light_txt{
+            color: #ffffff;
+        }
+        #medium_txt{
+            color: #3E2723;
+        }
+        #dark_txt{
+            color: #000000;
+        }
+        #bright_txt {
+            color: #B3E5FC;
+        }
+        .center {
+            text-align: center;
+        }
+        .button {
+            background-color: #263238;
+            color: #ffffff;
+            border: 2px solid #B3E5FC
+        }
+        .button:hover {
+            background-color: #FDD835;
+            color: #000000;
+            border: 2px solid #3E2723
+        }
+    </style>
+{% endblock %}

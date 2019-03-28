@@ -1,0 +1,154 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 border rounded p-1 mb-0" id="dark_bg">
+            <h1 id="light_txt"> Part {{ Constants.part_pre_min }}. <span id="bright_txt">Picking Numbers</span></h1>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <!-- Coordination Outcome -->
+    <div class="row">
+        <div class="col-md-6 border border-dark rounded p-3 mb-1" id="light_bg">
+            <h5>Calculate your earnings</h5>
+            <p>Choose values for <b>your pick</b> and the <b>minimum pick</b> in your group. Then, press the calculate
+                button and you will see the earnings you can get if these choices were made.
+            </p>
+            If <b>your pick</b> is:
+            <small>{% formfield player.test_effort label="" %}</small>
+            and the <b>minimum pick</b> is:
+            <br>
+            <small>{% formfield player.test_minimum label="" %}</small>
+            <button type="button" class="btn btn-danger" onclick="showresult('1')">Calculate</button>
+            <br><br>
+            <b>You earn</b> (60 - your pick + 2 x minimum pick):
+{#            17 + 13#}
+            <br><br>
+            <h4>69 {{ Constants.exp_currency }}</h4>
+
+
+            {##}
+{#            <table cellpadding="1" cellspacing="1">#}
+{#            <tr align="center">#}
+{#            <td>60 +</td>#}
+{#            <td><b>Your pick</b></td>#}
+{#                <td></td>#}
+{#            <td> - (2 x <b>min. pick</b>)</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#            <td></td>#}
+{#            <td><input name="test_effort" size=10 id='test_effort'/></td>#}
+{#            <td></td>#}
+{#            <td><input name="test_minimum" size=10 id='test_minimum'/></td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#            <td colspan="4">#}
+{#            <button type="button" class="btn" onclick="showresult('1')">See earnings</button>#}
+{#            </td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#            <td></td>#}
+{#            <td></td>#}
+{#            <td>Result</td>#}
+{#            <td></td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#            <td></td>#}
+{#            <td></td>#}
+{#            <td> <input type="text" id='result' readonly ></td>#}
+{#            <td></td>#}
+{#            </tr>#}
+{##}
+{##}
+{#            </table>#}
+
+        </div>
+        <div class="col-md-6 border border-dark rounded p-3 mb-1" id="medium_bg">
+            <h5 class="center" id="light_txt">Decision:</h5>
+            <p id="light_txt">Please pick a number between 1 and 60:
+                            {% formfield player.effort label="" %}
+            </p>
+            <br>
+                <button class="btn button btn-md"> Continue </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="calculator.js" type="text/javascript">
+var showresult = function(choise){
+var n1=parseFloat(document.getElementById('test_effort').value);
+var n2=parseFloat(document.getElementById('test_minimum').value);
+var r;
+var c=choise;
+
+switch(c)
+	{
+	case '1':
+		r=n1+n2;
+		break;
+	default:
+		break;
+	}
+	console.log(r);
+document.getElementById('result').value=r;
+}
+</script>
+{% endblock %}
+
+
+
+{% block styles %}
+    <style type="text/css">
+        #cy {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        #light_bg{
+            background-color: #CFD8DC;
+        }
+        #medium_bg{
+            background-color: #37474F;
+        }
+
+        #dark_bg{
+            background-color: #263238;
+        }
+        #light_txt{
+            color: #ffffff;
+        }
+        #medium_txt{
+            color: #3E2723;
+        }
+        #dark_txt{
+            color: #000000;
+        }
+        #bright_txt {
+            color: #B3E5FC;
+        }
+        .center {
+            text-align: center;
+        }
+        .button {
+            background-color: #FDD835;
+            color: #37474F;
+            border: 2px solid #F9A825
+        }
+        .button:hover {
+            background-color: #B3E5FC;
+            color: #000000;
+            border: 2px solid #3E2723
+        }
+    </style>
+{% endblock %}

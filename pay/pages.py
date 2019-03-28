@@ -1,0 +1,20 @@
+from otree.api import Currency as c, currency_range
+from ._builtin import Page, WaitPage
+from .models import Constants
+
+
+class RandomPayWP(WaitPage):
+    # wait_for_all_groups = True
+
+    def after_all_players_arrive(self):
+        self.group.round_payoffs()
+
+
+class RandomPay(Page):
+    pass
+
+
+page_sequence = [
+    RandomPayWP,
+    RandomPay,
+]

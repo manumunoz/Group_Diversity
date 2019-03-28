@@ -1,0 +1,211 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 border rounded p-1 mb-0" id="dark_bg">
+            <h1 id="bright_txt">Option
+            <small id="light_txt">(Round <span id="bright_txt">{{ subsession.round_number }}</span> of {{ Constants.num_rounds }})</small>
+            </h1>
+            <div>
+                <small id="light_txt">Coordinations in your group:
+                    <button type="button" class="btn btn-warning" disabled>{{ group.old_total_win_one }}</button>
+                    <button type="button" class="btn btn-success" disabled>{{ group.old_total_win_two }}</button>
+                    <button type="button" class="btn btn-info" disabled>{{ group.old_total_win_three }}</button>
+                    <button type="button" class="btn btn-danger" disabled>{{ group.old_total_win_four }}</button>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+    <!-- Network -->
+        <div class="col-md-6 border border-dark rounded p-3 mb-1" id="light_bg">
+            <h4 id="medium_txt">Summary: Second messages</h4>
+            <h6 id="medium_txt">
+                The color shows the <b>second message</b> sent by each player
+            </h6>
+        <div id="cy"></div>
+            <div class="container ">
+                <div class="row">
+                </div>
+            </div>
+        </div>
+    <!-- Choice -->
+        <div class="col-md-6 border border-dark rounded p-3 mb-1" id="dark_bg">
+            <h4 id="light_txt">You are player <b id="bright_txt"> {{player.role}}</b>:
+                <br>
+                <small>Click on the <b id="bright_txt">option</b> you want to pick:</small>
+            </h4>
+            <br>
+            <div class="center">
+                <input type="hidden" value="0" name="action" id="action"/>
+                <button name="action" value="1" class="btn btn-warning btn-lg"><h1>&#128047</h1></button>
+                <button name="action" value="2" class="btn btn-success btn-lg"><h1>&#128056</h1></button>
+                <button name="action" value="3" class="btn btn-info btn-lg"><h1>&#128051</h1></button>
+                <button name="action" value="4" class="btn btn-danger btn-lg"><h1>&#128055</h1></button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+<!-- JavaScript -->
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.1.0/cytoscape.js"></script>
+    <script>
+        var jsonnet = JSON.parse('{{group.network_data|safe}}');
+        var player_id = {{ player.name }};
+        console.log(jsonnet);
+        var cy = window.cy = cytoscape({
+            container: document.getElementById('cy'),
+
+        });
+
+        // Add isMine = 'yes' to all player's node and edges
+        jsonnet.elements = jsonnet.elements.map(
+            function(value) {
+                if ( (value.group === 'nodes' && value.data.name == 1)
+                ) {
+                    value.data.role = 'up'
+                }
+                if ( (value.group === 'nodes' && value.data.name == 2)
+                ) {
+                    value.data.role = 'right'
+                }
+                if ( (value.group === 'nodes' && value.data.name == 3)
+                ) {
+                    value.data.role = 'down'
+                }
+                if ( (value.group === 'nodes' && value.data.name == 4)
+                ) {
+                    value.data.role = 'left'
+                }
+                if (value.group === 'nodes' && value.data.second == 1) {
+                    value.data.behavior = 'One'
+                }
+                if (value.group === 'nodes' && value.data.second == 2) {
+                    value.data.behavior = 'Two'
+                }
+                if (value.group === 'nodes' && value.data.second == 3) {
+                    value.data.behavior = 'Three'
+                }
+                if (value.group === 'nodes' && value.data.second == 4) {
+                    value.data.behavior = 'Four'
+                }
+                return value
+            });
+
+        console.log(jsonnet)
+        cy.json(jsonnet);
+
+        var layout = cy.layout({name: 'grid'});
+
+        layout.run();
+        cy.panBy('node');
+
+        cy.style()
+            // NODES ==============================================
+            .selector('node')
+            // .style('padding-relative-to', 'width')
+            .style('shape', 'ellipse')
+            .style('width', '30%')
+            .style('height', '30%')
+            .style('background-color', '#E0E0E0')
+            .style('border-width', '5')
+            .style('border-color', '#000000')
+            .style('font-size', '18pt')
+            .style('color','#000000')
+            .style('padding', '100%')
+            // Node Labels: Top
+            .selector('node[role="up"]')
+            .style('text-valign','top')
+            // Node Labels: Right
+            .selector('node[role="right"]')
+            .style('text-valign','top')
+            // .style('text-halign','right')
+            // Node Labels: Bottom
+            .selector('node[role="down"]')
+            .style('text-valign','top')
+            // Node Labels: Left
+            .selector('node[role="left"]')
+            .style('text-valign','top')
+            // ====================================================
+            // BEHAVIOR ===========================================
+            // Choice == 1
+            .selector('node[behavior="One"]')
+            .style('border-color', '#ffbb33')
+                // .style('background-color', '#E1BEE7')
+            // Choice == 2
+            .selector('node[behavior="Two"]')
+            .style('border-color', '#00C851')
+                // .style('background-color', '#C8E6C9')
+            // Choice == 3
+            .selector('node[behavior="Three"]')
+            .style('border-color', '#33b5e5')
+                // .style('background-color', '#E1BEE7')
+            // Choice == 4
+            .selector('node[behavior="Four"]')
+            .style('border-color', '#ff4444')
+                // .style('background-color', '#C8E6C9')
+            // ====================================================
+            .update() // update the elements in the graph with the new style
+        ;
+        cy.userZoomingEnabled(false);
+        cy.autoungrabify(true);
+    </script>
+{% endblock %}
+
+
+<!-- CSS -->
+{% block styles %}
+    <style type="text/css">
+        #cy {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        #light_bg{
+            background-color: #E0E0E0;
+        }
+        #medium_bg{
+            background-color: #8D6E63;
+        }
+
+        #dark_bg{
+            background-color: #212121;
+        }
+        #light_txt{
+            color: #ffffff;
+        }
+        #medium_txt{
+            color: #212121;
+        }
+        #dark_txt{
+            color: #000000;
+        }
+        #bright_txt {
+            color: #E1BEE7;
+        }
+        .center {
+            text-align: center;
+        }
+        .button {
+            background-color: #455A64;
+            color: #B3E5FC;
+            border: 2px solid #B3E5FC
+        }
+        .button:hover {
+            background-color: #B3E5FC;
+            color: #000000;
+            border: 2px solid #3E2723
+        }
+    </style>
+{% endblock %}
