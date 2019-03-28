@@ -11,9 +11,6 @@ class Allocation(Page):
     form_model = 'player'
     form_fields = ['alloc']
 
-    def vars_for_template(self):
-        return self.player.vars_for_template()
-
 
 class AllocationWP(WaitPage):
     # wait_for_all_groups = True
@@ -28,9 +25,6 @@ class AllocationWP(WaitPage):
 class ClosingPage(Page):
     form_model = 'player'
     form_fields = ['gender']
-
-    def before_next_page(self):
-        self.player.var_between_apps()
 
 
 page_sequence = [

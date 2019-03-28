@@ -128,6 +128,14 @@ SESSION_CONFIG_DEFAULTS = {
 
 SESSION_CONFIGS = [
     {
+        'name': 'allocation',
+        'display_name': "allocation",
+        'num_demo_participants': 4,
+        'app_sequence': ['allocation'],
+        # 'treatment': 1,
+        # 'use_browser_bots': True
+    },
+    {
         'name': 'min_effort_calc',
         'display_name': "min_effort_calc",
         'num_demo_participants': 4,
