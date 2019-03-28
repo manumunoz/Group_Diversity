@@ -1,0 +1,83 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12 border border-dark text-white rounded" id="upper">
+            <h2>Su participación en este experimento termina aquí.</h2>
+      </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12 border rounded" id="network">
+        <p>
+           En la siguiente pantalla usted será informado de sus ganancias. Después de eso, por favor permanezca sentado hasta
+            que lo hayan llamando para entregarle su pago.
+
+            <br><br>
+
+            Para concluir, por favor presione el botón que indique su género:
+
+            <br><br>
+
+            <input type="hidden" value="0" name="gender" id="gender"/>
+            <button name="gender" value="1" class="btn btn-warning">Femenino</button>
+            <button name="gender" value="0" class="btn btn-success">Masculino</button>
+          <br>
+        </p>
+      </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .buttonname {
+            background-color: #EEE8AA;
+            color: #000000;
+            border: 1px solid #000000
+        }
+        .button {
+            background-color: #000000;
+            color: #EEE8AA;
+            border: 2px solid #EEE8AA
+        }
+        .button:hover {
+            background-color: #EEE8AA;
+            color: #000000;
+            border: 2px solid #000000
+        }
+        #upper{
+            background-color: #000000;
+        }
+        #middle{
+            background-color: #424242;
+        }
+        #lower{
+            color: #EEE8AA
+        }
+        #network{
+            background-color: #ffffff;
+        }
+        #symbol{
+            color: #616161;
+        }
+        .otree-chat__messages {
+            height: 400px;
+        }
+        .otree-chat__nickname {
+            color: #000000;
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}

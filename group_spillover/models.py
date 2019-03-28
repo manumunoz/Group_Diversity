@@ -41,12 +41,7 @@ class Constants(BaseConstants):
     part_post_min = 3
     exp_currency = "experimental dollars"
     #------------------------------------------
-    # Options
-    orange = "&#128047"
-    green = "&#128047"
-    blue = "&#128047"
-    red = "&#128047"
-    #------------------------------------------
+
 
 class Subsession(BaseSubsession):
     def creating_session(self):

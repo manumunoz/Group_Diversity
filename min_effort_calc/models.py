@@ -13,15 +13,24 @@ Your app description
 
 class Constants(BaseConstants):
     name_in_url = 'min_effort_calc'
-    players_per_group = 4
+    names = ['1', '2', '3', '4']
+    players_per_group = len(names)
     num_rounds = 1
+    # instructions_template = 'group_spillover/Instructions.html'
+    #==================================
+    # PAYOFFS
     gain = 2
     cost = 1
     fix = 60
+    #==================================
+    # Treatment & Group parameters
     part_pre_min = 1
     part_coord = 2
     part_post_min = 3
+    part_alloc = 4
     exp_currency = "experimental dollars"
+    #------------------------------------------
+
 
 
 class Subsession(BaseSubsession):
