@@ -26,74 +26,17 @@
             and the <b>minimum pick</b> is:
             <br>
             <small>{% formfield player.test_minimum label="" %}</small>
-            <a href=“#” class=“btn” id=“btn-calc" onclick="showresult('1')">Calcular</a>
+
+            <a href='#' class='btn btn-danger' id="btn-calc" onclick="showResult()">Calculate</a>
+
             <br><br>
+            <div id="result_msg" class="small"></div>
+            <br>
+
             <b>You earn</b> (60 - your pick + 2 x minimum pick):
 {#            17 + 13#}
             <br><br>
-            <h4>69 {{ Constants.exp_currency }}</h4>
-
-            <table border="1" cellpadding="5" cellspacing="5" width="600">
-            <tr align="center">
-            <td>First number</td>
-            <td>Second Number</td>
-            <td>Result</td>
-            </tr>
-            <tr align="center">
-            <td><input name="test_effort" type="text" size=10 id='test_effort'/></td>
-            <td><input name="test_minimum" type="text" size=10 id='test_minimum'/></td>
-            <td> <input type="text" id='result' readonly ></td>
-            </tr>
-            <tr>
-            <td colspan="3">
-            <button onclick="showresult('1')">+</button>
-            <button onclick="showresult('2')">-</button>
-            <button onclick="showresult('3')">*</button>
-            <button onclick="showresult('4')">/</button>
-            <button onclick="showresult('5')">%</button>
-            </td>
-            </tr>
-
-            </table>
-
-
-
-
-
-            {##}
-{#            <table cellpadding="1" cellspacing="1">#}
-{#            <tr align="center">#}
-{#            <td>60 +</td>#}
-{#            <td><b>Your pick</b></td>#}
-{#                <td></td>#}
-{#            <td> - (2 x <b>min. pick</b>)</td>#}
-{#            </tr>#}
-{#            <tr>#}
-{#            <td></td>#}
-{#            <td><input name="test_effort" size=10 id='test_effort'/></td>#}
-{#            <td></td>#}
-{#            <td><input name="test_minimum" size=10 id='test_minimum'/></td>#}
-{#            </tr>#}
-{#            <tr>#}
-{#            <td colspan="4">#}
-{#            <button type="button" class="btn" onclick="showresult('1')">See earnings</button>#}
-{#            </td>#}
-{#            </tr>#}
-{#            <tr>#}
-{#            <td></td>#}
-{#            <td></td>#}
-{#            <td>Result</td>#}
-{#            <td></td>#}
-{#            </tr>#}
-{#            <tr>#}
-{#            <td></td>#}
-{#            <td></td>#}
-{#            <td> <input type="text" id='result' readonly ></td>#}
-{#            <td></td>#}
-{#            </tr>#}
-{##}
-{##}
-{#            </table>#}
+            <h4><span id="id_test_result">0</span> {{ Constants.exp_currency }}</h4>
 
         </div>
         <div class="col-md-6 border border-dark rounded p-3 mb-1" id="medium_bg">
@@ -111,34 +54,34 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="calculator.js" type="text/javascript">
-function showresult(choise){
-var test_effort=parseFloat(document.getElementById('test_effort').value);
-var test_effort=parseFloat(document.getElementById('test_effort').value);
-var r;
-var c=choise;
+<script type="text/javascript">
+var n_tests = 0;
+var MAX_TESTS = 3;
 
-switch(c)
-	{
-	case '1':
-		r=n1+n2;
-		break;
-	case '2':
-		r=n1-n2;
-		break;
-	case '3':
-		r=n1*n2;
-		break;
-	case '4':
-		r=n1/n2;
-		break;
-	case '5':
-		r=n2*100/n1;
-		break;
-	default:
-		break;
-	}
-document.getElementById('result').value=r;
+function showResult() {
+    var result_msg = $('#result_msg');
+    result_msg.text('');
+
+    if (n_tests > MAX_TESTS - 1) {
+        alert('You have reached the maximum calculations allowed');
+        return;
+    }
+
+    var test_effort = parseInt($('#id_test_effort').val());
+    var test_minimum = parseInt($('#id_test_minimum').val());
+
+    if (test_effort < test_minimum) {
+        result_msg.text('Effort lower than minimum, calculation result not displayed');
+        return;
+    }
+    var r = 60 - test_effort + 2 * test_minimum;
+    $('#id_test_result').text(r);
+    n_tests++;
+
+    if (n_tests == MAX_TESTS) {
+        result_msg.text('You have reached the maximum calculations allowed');
+        $('#btn-calc').hide(200);
+    }
 }
 </script>
 {% endblock %}
