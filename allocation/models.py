@@ -87,7 +87,7 @@ class Group(BaseGroup):
     def round_payoffs(self):
         for player in self.get_players():
             player.points_alloc = player.alloc_received
-            player.payoff = player.points_alloc
+            # player.payoff = player.points_alloc
 
 
 class Player(BasePlayer):

@@ -21,11 +21,13 @@
               <p id="medium_txt">
                         Your pick:
                         <br>
-                        <button type="button" class="btn button btn-dark btn-sm" disabled>{{ player.first_effort }}</button>
+                        <b>{{ player.first_effort }}</b>
+{#                  <button type="button" class="btn button btn-dark btn-sm" disabled>{{ player.first_effort }}</button>#}
                     <br><br>
                         Minimum pick:
                         <br>
-                        <button type="button" class="btn button btn-dark btn-sm" disabled>{{ player.first_min_effort }}</button>
+                  <b>{{ player.first_min_effort }}</b>
+{#                        <button type="button" class="btn button btn-dark btn-sm" disabled>{{ player.first_min_effort }}</button>#}
                 </p>
         </div>
     <!-- Coordination Game -->
@@ -34,7 +36,8 @@
             <p id="dark_txt">
                 The {{ Constants.chosen_num_rounds }} rounds chosen were:
                 <div class="center">
-                    <button type="button" class="btn button btn-dark" disabled>{{ Constants.pay_rounds }}</button>
+            <b>{{ Constants.pay_rounds }}</b>
+{#                    <button type="button" class="btn button btn-dark" disabled>{{ Constants.pay_rounds }}</button>#}
                 </div>
                  <br>
                 You coordinated in <b> {{ player.coordination }} </b> rounds, as follows:
@@ -58,11 +61,15 @@
               <p id="medium_txt">
                         Your pick:
                         <br>
-                        <button type="button" class="btn button btn-dark btn-sm" disabled>{{ player.second_effort }}</button>
+                                          <b>{{ player.second_effort }}</b>
+
+{#                        <button type="button" class="btn button btn-dark btn-sm" disabled>{{ player.second_effort }}</button>#}
                     <br><br>
                         Minimum pick:
                         <br>
-                        <button type="button" class="btn button btn-dark btn-sm" disabled>{{ player.second_min_effort }}</button>
+                                                            <b>{{ player.second_min_effort }}</b>
+
+{#                        <button type="button" class="btn button btn-dark btn-sm" disabled>{{ player.second_min_effort }}</button>#}
 
                 </p>
         </div>
@@ -79,18 +86,18 @@
                         Your were in:
                         <br>
                         <b>role A</b>
-                        <br><br>
-                        You kept:
-                        <br>
-                        <b>{{ player.alloc_points }} {{ Constants.exp_currency }}</b>
+{#                        <br><br>#}
+{#                        You kept:#}
+{#                        <br>#}
+{#                        <b>{{ player.alloc_points }} {{ Constants.exp_currency }}</b>#}
                     {% elif player.chosen_role == 0 %}
                         Your were in:
                         <br>
                         <b>role B</b>
-                        <br><br>
-                        You received:
-                        <br>
-                        <b>{{ player.alloc_points }} {{ Constants.exp_currency }}</b>
+{#                        <br><br>#}
+{#                        You received:#}
+{#                        <br>#}
+{#                        <b>{{ player.alloc_points }} {{ Constants.exp_currency }}</b>#}
                     {% endif %}
                     <br>
                 {% else %}
@@ -111,7 +118,7 @@
                 <h5 id="bright_txt">{{ player.first_my_points }} {{ Constants.exp_currency }}</h5>
                 <br>
                 <h4 id="light_txt"> In part {{ Constants.part_coord }} you earn:</h4>
-                <h5 id="bright_txt">{{ player.my_points }} {{ Constants.exp_currency }}</h5>
+                <h5 id="bright_txt">{{ player.coord_points}} {{ Constants.exp_currency }}</h5>
                 <br>
                 <h4 id="light_txt"> In part {{ Constants.part_post_min }} you earn:</h4>
                 <h5 id="bright_txt">{{ player.second_my_points }} {{ Constants.exp_currency }}</h5>
@@ -122,19 +129,19 @@
         </div>
         <div class="col-md-8 border border-dark rounded p-3 mb-1" id="medium_bg">
           <p>
-          En total, usted ganó {{ player.total_points }} y cada {{ Constants.exp_currency }} será convertido a {{ Constants.currency_exchange }}
-              {{ Constants.currency }}. A esto se le sumará su pago fijo por asistir ({{ Constants.min_pay }} {{ Constants.currency }}).
+          In total, you earned {{ player.total_points }} and each {{ Constants.exp_currency }} will be exchange into {{ Constants.currency_exchange }}
+              {{ Constants.currency }}. In addition, you will receive a fix show-up fee of ({{ Constants.min_pay }} {{ Constants.currency }}).
               <br><br>
-              Por lo tanto, su pago final es:
+              Therefore, your final payment is:
             <br>
         <h1>{{ participant.payoff_plus_participation_fee }}</h1>
           <br>
-            <i>Si su pago total es menor a {{ Constants.min_pay }} {{ Constants.currency }} usted tiene asegurado su pago
-                por asistir, así que recibirá {{ Constants.min_pay }} {{ Constants.currency }}</i>
+            <i>If your final payment is lower than {{ Constants.min_pay }} {{ Constants.currency }} you will receive the
+                show-up fee, so you will earn {{ Constants.min_pay }} {{ Constants.currency }}</i>
             <br><br>
-            <h6 id="midi">Por favor permanezca sentado hasta que lo llamen para entregarle su pago.</h6>
+            <h6 id="midi">Please remain seated until you are called for payment.</h6>
           </p>
-            <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Terminar </button>
+            <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Finish </button>
           <br><br>
         </div>
     </div>

@@ -17,10 +17,10 @@
     <!-- Coordination Outcome -->
     <div class="row">
         <div class="col-md-12 border border-dark rounded p-3 mb-1" id="medium_bg">
-            <h5 class="center" id="light_txt">Decision:</h5>
+            <h4 class="center" id="light_txt">Decision:</h4>
             <br>
             <p id ="light_txt">Choose how much from the <span id="bright_txt">{{ Constants.pie }} {{ Constants.exp_currency }}</span> you want to send to another participant in your group.</p>
-            <p id="bright_txt">If your allocation is chosen by the computer, the remaining amount will be for you. </p>
+            <p id="light_txt">If your allocation is chosen by the computer, the remaining amount will be for you. </p>
             <small>{% formfield player.alloc label="" %}</small>
             <br>
             <br>
@@ -39,39 +39,39 @@
             display: block;
         }
         #light_bg{
-            background-color: #CFD8DC;
+            background-color: #E0E0E0;
         }
         #medium_bg{
             background-color: #37474F;
         }
 
         #dark_bg{
-            background-color: #263238;
+            background-color: #006064;
         }
         #light_txt{
             color: #ffffff;
         }
         #medium_txt{
-            color: #3E2723;
+            color: #006064;
         }
         #dark_txt{
             color: #000000;
         }
         #bright_txt {
-            color: #B3E5FC;
+            color: #FF5722;
         }
         .center {
             text-align: center;
         }
         .button {
-            background-color: #FDD835;
-            color: #37474F;
-            border: 2px solid #F9A825
+            background-color: #006064;
+            color: #ffffff;
+            border: 2px solid #ffffff
         }
         .button:hover {
-            background-color: #B3E5FC;
-            color: #000000;
-            border: 2px solid #3E2723
+            background-color: #FF5722;
+            color: #ffffff;
+            border: 2px solid #ffffff
         }
     </style>
 {% endblock %}

@@ -7,14 +7,20 @@ import random
 
 class PlayerBot(Bot):
     def play_round(self):
+        yield (pages.Start)
+
         yield (pages.FirstSignal,
                {'first': random.choice([1,2,3,4])})
+
         yield (pages.SecondSignal,
                {'second': random.choice([1,2,3,4])})
+
         yield (pages.Action,
                {'action': random.choice([1,2,3,4])})
+
         if self.round_number == Constants.num_rounds:
             yield (pages.LastPage)
+
             yield (pages.Results)
 
 

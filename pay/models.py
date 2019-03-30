@@ -24,12 +24,12 @@ class Constants(BaseConstants):
     lowpay = 1
     nopay = 0
     show_up = 5
-    total_group_pay = 40 # Value in dollars for total group earnings
+    total_group_pay = 800 # Value in dollars for total group earnings
     total_group_no_pay = 0
     #==================================
     # CHOSEN ROUNDS
     chosen_num_rounds = 12
-    goal_value = 1 #6
+    goal_value = 8
     pay_rounds = [1,2,4,6,7,8,9,12,13,14,15,17]
     #==================================
     # Treatment & Group parameters
@@ -39,15 +39,10 @@ class Constants(BaseConstants):
     part_post_min = 3
     part_alloc = 4
     #------------------------------------------
-    # Min Effort
-    gain = 20
-    cost = 10
-    fix = 60
-    #------------------------------------------
     # Payoffs
     exp_currency = "experimental dollars"
     currency = "pesos"
-    currency_exchange = 800
+    currency_exchange = 80
     points_exchange = 1
     min_pay = 10000
     min_points = 10
@@ -78,6 +73,7 @@ class Group(BaseGroup):
             player.group_points = player.participant.vars['group_points']
             player.my_points = player.participant.vars['points']
             player.coordination = player.participant.vars['coordinations']
+            player.coord_points = player.participant.vars['coord_point']
             #======================================
             player.second_effort_a = player.participant.vars['effort_a_2']
             player.second_effort_b = player.participant.vars['effort_b_2']
@@ -91,9 +87,12 @@ class Group(BaseGroup):
             player.chosen_role = player.participant.vars['chosen_role']
             player.alloc_points = player.participant.vars['part_alloc_payoff']
             # ======================================
-            player.total_points = player.first_my_points + player.my_points + player.second_my_points + player.alloc_points
+            player.total_points = player.first_my_points + player.coord_points + player.second_my_points + player.alloc_points
             # ======================================
 
+    def payoff_value(self):
+        for player in self.get_players():
+            player.payoff = player.total_points
 
 class Player(BasePlayer):
     first_effort_a = models.IntegerField()
@@ -111,6 +110,7 @@ class Player(BasePlayer):
     group_points = models.IntegerField()
     my_points = models.IntegerField()
     coordination = models.IntegerField()
+    coord_points = models.FloatField()
     #======================================
     second_effort_a = models.IntegerField()
     second_effort_b = models.IntegerField()
@@ -125,4 +125,5 @@ class Player(BasePlayer):
     alloc_points = models.IntegerField()
     #======================================
     total_points = models.CurrencyField()
+    payoff = models.FloatField()
     #======================================

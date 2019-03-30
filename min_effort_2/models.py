@@ -56,7 +56,7 @@ class Group(BaseGroup):
     def round_gains(self):
         for player in self.get_players():
             player.round_gains = (Constants.gain * self.min_effort) - (Constants.cost * player.effort) + Constants.fix
-            player.payoff = player.round_gains
+            # player.payoff = player.round_gains
 
 
 class Player(BasePlayer):

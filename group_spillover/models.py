@@ -66,6 +66,7 @@ class Subsession(BaseSubsession):
 
             if p.treat == 1:
                 p.type = 1
+
             elif p.treat == 2:
                 if p.id_in_group == 1 or p.id_in_group == 2:
                     p.type = 1
@@ -301,12 +302,12 @@ class Group(BaseGroup):
     #         else:
     #             player.final_pay = 0
 
-    def payoff_value(self):
-        for player in self.get_players():
-            if self.round_number == Constants.num_rounds:
-                player.payoff = player.final_pay
-            else:
-                player.payoff = 0
+    # def payoff_value(self):
+    #     for player in self.get_players():
+    #         if self.round_number == Constants.num_rounds:
+    #             player.payoff = player.final_pay
+    #         else:
+    #             player.payoff = 0
 
     def displaying_network(self):
         nodes = [{'data': {'id': i, 'name': i, 'first': self.get_player_by_id(i).first, 'second': self.get_player_by_id(i).second,
@@ -379,11 +380,6 @@ class Player(BasePlayer):
         else:
             self.action_four = 1
 
-    # def set_payoffs(self):
-    #     if self.round_number == Constants.num_rounds:
-    #         self.payoff = self.final_pay
-    #     else:
-    #         self.payoff = 0
 
     name = models.StringField()
     friends = models.LongStringField()
@@ -399,3 +395,4 @@ class Player(BasePlayer):
         self.participant.vars['group_points'] = self.group.chosen_group_total_points
         self.participant.vars['points'] = self.chosen_total_points
         self.participant.vars['coordinations'] = self.group.chosen_total_coordination
+        self.participant.vars['coord_point'] = self.final_pay

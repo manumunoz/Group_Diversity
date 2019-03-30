@@ -6,6 +6,7 @@ from .models import Constants
 class RandomPayWP(WaitPage):
     def after_all_players_arrive(self):
         self.group.round_payoffs()
+        self.group.payoff_value()
 
 
 class RandomPay(Page):

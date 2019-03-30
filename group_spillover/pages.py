@@ -7,8 +7,12 @@ import json
 import itertools
 
 
-class Start(WaitPage):
+class StartWP(WaitPage):
     wait_for_all_groups = True
+
+
+class Start(Page):
+    pass
 
 
 class BeforeSignalWP(WaitPage):
@@ -96,7 +100,7 @@ class LastPageWaitPage(WaitPage):
         self.group.total_values()
         self.group.goal_achievement()
         self.group.finalpay_value()
-        self.group.payoff_value()
+        # self.group.payoff_value()
 
 
 class LastPage(Page):
@@ -117,6 +121,7 @@ class Results(Page):
 
 
 page_sequence = [
+    StartWP,
     Start,
     BeforeSignalWP,
     FirstSignal,

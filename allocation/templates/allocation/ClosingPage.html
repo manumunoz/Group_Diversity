@@ -4,7 +4,7 @@
 {% block title %}
 <div class="container">
     <div class="row">
-      <div class="col-sm-12 border border-dark text-white rounded" id="upper">
+      <div class="col-sm-12 border border-dark text-white rounded" id="dark_bg">
             <h2>Your pariticipation in this study concludes here.</h2>
       </div>
     </div>
@@ -15,7 +15,7 @@
 <div class="container">
     <div class="row">
       <div class="col-sm-12 border rounded" id="medium_bg">
-        <p>
+        <p id="light_txt">
            In the following screen you will be informed of your earnings. Afterwards, please remain seated until you are
             called to receive your payment.
 
@@ -23,17 +23,19 @@
 
             To conclude, please write your age in the box and click the button indicating your gender:
 
-            <br>
+            <br><br>
 
-            <span>{% formfield player.age label="Your age" %}</span>
+            <b id="light_txt">Your age:</b>
 
-            Your gender:
+            <span>{% formfield player.age label="" %}</span>
+
+            <b id="light_txt">Your gender:</b>
 
             <br><br>
 
             <input type="hidden" value="0" name="gender" id="gender"/>
-            <button name="gender" value="1" class="btn btn-warning">Femenino</button>
-            <button name="gender" value="0" class="btn btn-success">Masculino</button>
+            <button name="gender" value="1" class="btn button2">Femenino</button>
+            <button name="gender" value="0" class="btn button">Masculino</button>
           <br>
         </p>
       </div>
@@ -50,7 +52,22 @@
         }
         #medium_bg{
             background-color: #37474F;
+        }
+
+        #dark_bg{
+            background-color: #006064;
+        }
+        #light_txt{
             color: #ffffff;
+        }
+        #medium_txt{
+            color: #006064;
+        }
+        #dark_txt{
+            color: #000000;
+        }
+        #bright_txt {
+            color: #FF5722;
         }
         .buttonname {
             background-color: #EEE8AA;
@@ -58,12 +75,22 @@
             border: 1px solid #000000
         }
         .button {
-            background-color: #000000;
-            color: #EEE8AA;
-            border: 2px solid #EEE8AA
+            background-color: #006064;
+            color: #ffffff;
+            border: 2px solid #ffffff
         }
         .button:hover {
-            background-color: #EEE8AA;
+            background-color: #FDD835;
+            color: #000000;
+            border: 2px solid #000000;
+        }
+        .button2 {
+            background-color: #FF5722;
+            color: #ffffff;
+            border: 2px solid #ffffff
+        }
+        .button2:hover  {
+            background-color: #B3E5FC;
             color: #000000;
             border: 2px solid #000000
         }
