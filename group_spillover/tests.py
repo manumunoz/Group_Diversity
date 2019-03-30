@@ -22,4 +22,4 @@ class PlayerBot(Bot):
 # otree test medium_diversity --export=test_medium_diversity
 # otree test high_diversity --export=test_high_diversity
 
-# otree test min_effort_calc
+# otree test low_diversity

@@ -120,7 +120,7 @@ mturk_hit_settings = {
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = {
-    'real_world_currency_per_point': 800,
+    'real_world_currency_per_point': 80,
     'participation_fee': 10000,
     'doc': "",
     'mturk_hit_settings': mturk_hit_settings,

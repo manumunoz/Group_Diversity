@@ -14,4 +14,4 @@ class PlayerBot(Bot):
         yield (pages.PostEffort)
 
 
-# otree test min_effort_calc
+# otree test min_effort_2

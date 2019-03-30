@@ -19,7 +19,7 @@ class Constants(BaseConstants):
     name_in_url = 'group_spillover'
     names = ['1', '2', '3', '4']
     players_per_group = len(names)
-    num_rounds = 5 #20
+    num_rounds = 20
     # instructions_template = 'group_spillover/Instructions.html'
     #==================================
     # PAYOFFS
@@ -27,12 +27,12 @@ class Constants(BaseConstants):
     lowpay = 1
     nopay = 0
     show_up = 5
-    total_group_pay = 400
+    total_group_pay = 800
     total_group_no_pay = 0
     #==================================
     # CHOSEN ROUNDS
     chosen_num_rounds = 12
-    goal_value = 1 #8
+    goal_value = 8
     pay_rounds = [1,2,4,6,7,8,9,12,13,14,15,17]
     #==================================
     # Treatment & Group parameters
@@ -288,10 +288,18 @@ class Group(BaseGroup):
 
     def finalpay_value(self):
         for player in self.get_players():
-            if self.round_number == Constants.num_rounds and self.goal_achieved == 1:
-                player.final_pay = (player.chosen_total_points * Constants.total_group_pay)/self.chosen_group_total_points
+            if self.goal_achieved == 1:
+                if self.round_number == Constants.num_rounds:
+                    player.final_pay = (player.chosen_total_points * Constants.total_group_pay)/self.chosen_group_total_points
             else:
                 player.final_pay = 0
+
+    # def finalpay_value(self):
+    #     for player in self.get_players():
+    #         if self.round_number == Constants.num_rounds and self.goal_achieved == 1:
+    #             player.final_pay = (player.chosen_total_points * Constants.total_group_pay)/self.chosen_group_total_points
+    #         else:
+    #             player.final_pay = 0
 
     def payoff_value(self):
         for player in self.get_players():
