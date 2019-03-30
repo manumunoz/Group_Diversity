@@ -37,9 +37,9 @@
                 The color shows the <b> option </b> chosen by each player in the previous round.
                 <br><br>
                 {% if group.old_coordination == 1 %}
-                 <b>The coordination was successful.</b>
+                 <b class="message">The coordination was successful.</b>
                 {% else %}
-                 <b>The coordination was not successful.</b>
+                 <b class="message">The coordination was not successful.</b>
                 {% endif %}
             </h6>
             {% endif %}
@@ -59,10 +59,10 @@
             <br><br>
             <div class="center">
                 <input type="hidden" value="0" name="first" id="first"/>
-                <button name="first" value="1" class="btn btn-outline-warning btn-lg"><h1>&#128047</h1></button>
-                <button name="first" value="2" class="btn btn-outline-success btn-lg"><h1>&#128056</h1></button>
-                <button name="first" value="3" class="btn btn-outline-info btn-lg"><h1>&#128051</h1></button>
-                <button name="first" value="4" class="btn btn-outline-danger btn-lg"><h1>&#128055</h1></button>
+                <button name="first" value="1" class="btn btn-outline-warning btn-lg"><h1> &#128047 </h1></button>
+                <button name="first" value="2" class="btn btn-outline-success btn-lg"><h1> &#128056 </h1></button>
+                <button name="first" value="3" class="btn btn-outline-info btn-lg"><h1> &#128051 </h1></button>
+                <button name="first" value="4" class="btn btn-outline-danger btn-lg"><h1> &#128025 </h1></button>
             </div>
         </div>
     </div>
@@ -128,9 +128,9 @@
             // NODES ==============================================
             .selector('node')
             // .style('padding-relative-to', 'width')
-            .style('shape', 'ellipse')
-            .style('width', '30%')
-            .style('height', '30%')
+            .style('shape', 'rectangle')
+            .style('width', '40%')
+            .style('height', '40%')
             .style('background-color', '#ffffff')
             .style('border-width', '2')
             .style('border-color', '#3e2723')
@@ -219,6 +219,10 @@
             background-color: #B3E5FC;
             color: #000000;
             border: 2px solid #3E2723
+        }
+        .message{
+            background-color: #E1BEE7;
+            color:#000000;
         }
     </style>
 {% endblock %}
