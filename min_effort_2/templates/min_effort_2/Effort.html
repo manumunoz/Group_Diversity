@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 border rounded p-1 mb-0" id="dark_bg">
-            <h1 id="light_txt"> Part {{ Constants.part_pre_min }}. <span id="bright_txt">Picking Numbers</span></h1>
+            <h1 id="light_txt"> Part {{ Constants.part_post_min }}. <span id="bright_txt">Picking Numbers</span></h1>
         </div>
     </div>
 </div>
@@ -17,9 +17,12 @@
     <!-- Coordination Outcome -->
     <div class="row">
         <div class="col-md-6 border border-dark rounded p-3 mb-1" id="light_bg">
-            <h5>Calculate your earnings</h5>
-            <p>Choose values for <b>your pick</b> and the <b>minimum pick</b> in your group. Then, press the calculate
-                button and you will see the earnings you can get if these choices were made.
+            <h5>Calculator</h5>
+            <p>Write values for <b>your pick</b> and the <b>minimum pick</b> and you can see the potential earnings using the formula:
+                <br>
+                <b>{{ Constants.fix }} - ({{ Constants.cost }} x your pick) + ({{ Constants.gain }} x minimum pick)</b>.
+                <br><br>
+                You can use the calculator {{ Constants.attempts }} times.
             </p>
             If <b>your pick</b> is:
             <small>{% formfield player.test_effort label="" %}</small>
@@ -30,13 +33,13 @@
             <a href='#' class='btn btn-danger' id="btn-calc" onclick="showResult()">Calculate</a>
 
             <br><br>
-            <div id="result_msg" class="small"></div>
+            <div id="result_msg" class="small message"></div>
             <br>
 
-            <b>You earn</b> (60 - your pick + 2 x minimum pick):
+            <b>You earn</b>:
 {#            17 + 13#}
             <br><br>
-            <h4><span id="id_test_result">0</span> {{ Constants.exp_currency }}</h4>
+            <h4><span id="id_test_result"> ...</span> {{ Constants.exp_currency }}</h4>
 
         </div>
         <div class="col-md-6 border border-dark rounded p-3 mb-1" id="medium_bg">
@@ -74,7 +77,18 @@ function showResult() {
         result_msg.text('Effort lower than minimum, calculation result not displayed');
         return;
     }
-    var r = 60 - test_effort + 2 * test_minimum;
+
+    if (test_effort > 60 || test_effort < 1) {
+    result_msg.text('Your pick must be a number between 1 and 60');
+    return;
+    }
+
+    if (test_minimum > 60 || test_minimum < 1) {
+    result_msg.text('The minimum pick must be a number between 1 and 60');
+    return;
+    }
+
+    var r = 60 - 2 * test_effort + 3 * test_minimum;
     $('#id_test_result').text(r);
     n_tests++;
 
@@ -95,15 +109,19 @@ function showResult() {
             height: 100%;
             display: block;
         }
+        .message{
+            background-color: #FDD835;
+            color:#000000;
+        }
         #light_bg{
-            background-color: #CFD8DC;
+            background-color: #E0E0E0;
         }
         #medium_bg{
-            background-color: #37474F;
+            background-color: #212121;
         }
 
         #dark_bg{
-            background-color: #263238;
+            background-color: #212121;
         }
         #light_txt{
             color: #ffffff;

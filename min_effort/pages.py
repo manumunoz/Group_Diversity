@@ -12,7 +12,7 @@ class BeforeEffortWP(WaitPage):
 
 class Effort(Page):
     form_model = 'player'
-    form_fields = ['effort']
+    form_fields = ['effort', 'test_effort', 'test_minimum']
 
 
 class BeforeNextRoundWP(WaitPage):

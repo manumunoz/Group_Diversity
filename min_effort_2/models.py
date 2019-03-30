@@ -2,32 +2,36 @@ from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
     Currency as c, currency_range
 )
-
 import random
 
-author = 'Your name here'
+author = 'Manu Munoz-Herrera'
 
 doc = """
-Your app description
+Minimum Effort game, with a range between 1 and 60, gains of 3 and cost of 2, and a calculator.
 """
 
 
 class Constants(BaseConstants):
-    name_in_url = 'min_effort_b'
-    players_per_group = 4
+    name_in_url = 'min_effort_2'
+    names = ['1', '2', '3', '4']
+    players_per_group = len(names)
     num_rounds = 1
-    gain = 20
-    cost = 10
-    fix = 50
-    # names = ['A','B','C','D',]
-    # highpay = c(3)
-    # lowpay = c(1)
-    # nopay = c(0)
+    # instructions_template = 'group_spillover/Instructions.html'
+    #==================================
+    # PAYOFFS
+    gain = 3
+    cost = 2
+    fix = 60
+    attempts = 5
+    #==================================
     # Treatment & Group parameters
     part_pre_min = 1
     part_coord = 2
     part_post_min = 3
+    part_alloc = 4
+    exp_currency = "experimental dollars"
     #------------------------------------------
+
 
 class Subsession(BaseSubsession):
     pass
@@ -64,18 +68,11 @@ class Player(BasePlayer):
     old_effort_b = models.IntegerField()
     old_effort_c = models.IntegerField()
     old_effort_d = models.IntegerField()
+    test_effort = models.IntegerField(min=1, max=60, blank=True)
 
-    effort = models.IntegerField(
-        choices=[
-            [1, 'A'],
-            [2, 'B'],
-            [3, 'C'],
-            [4, 'D'],
-            [5, 'A'],
-            [6, 'B'],
-            [7, 'C']
-        ]
-    )
+    test_minimum = models.IntegerField(min=1, max=60, blank=True)
+
+    effort = models.IntegerField(min=1, max=60)
 
     old_effort = models.IntegerField()
     round_gains = models.IntegerField()
@@ -85,10 +82,10 @@ class Player(BasePlayer):
         return {1: '1', 2: '2', 3: '3', 4: '4'}[self.id_in_group]
 
     def var_between_apps(self):
-        self.participant.vars['effort_a_2'] = self.effort_a
-        self.participant.vars['effort_b_2'] = self.effort_b
-        self.participant.vars['effort_c_2'] = self.effort_c
-        self.participant.vars['effort_d_2'] = self.effort_d
-        self.participant.vars['effort_2'] = self.effort
-        self.participant.vars['min_effort_2'] = self.group.min_effort
-        self.participant.vars['effort_points_2'] = self.round_gains
+        self.participant.vars['effort_a'] = self.effort_a
+        self.participant.vars['effort_b'] = self.effort_b
+        self.participant.vars['effort_c'] = self.effort_c
+        self.participant.vars['effort_d'] = self.effort_d
+        self.participant.vars['effort'] = self.effort
+        self.participant.vars['min_effort'] = self.group.min_effort
+        self.participant.vars['effort_points'] = self.round_gains

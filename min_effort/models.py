@@ -4,23 +4,33 @@ from otree.api import (
 )
 import random
 
-author = 'Your name here'
+author = 'Manu Munoz-Herrera'
 
 doc = """
-Your app description
+Minimum Effort game, with a range between 1 and 60, gains of 2 and cost of 1, and a calculator.
 """
 
 
 class Constants(BaseConstants):
     name_in_url = 'min_effort'
-    players_per_group = 4
+    names = ['1', '2', '3', '4']
+    players_per_group = len(names)
     num_rounds = 1
-    gain = 20
-    cost = 10
+    # instructions_template = 'group_spillover/Instructions.html'
+    #==================================
+    # PAYOFFS
+    gain = 2
+    cost = 1
     fix = 60
+    attempts = 5
+    #==================================
+    # Treatment & Group parameters
     part_pre_min = 1
     part_coord = 2
     part_post_min = 3
+    part_alloc = 4
+    exp_currency = "experimental dollars"
+    #------------------------------------------
 
 
 class Subsession(BaseSubsession):
@@ -58,18 +68,11 @@ class Player(BasePlayer):
     old_effort_b = models.IntegerField()
     old_effort_c = models.IntegerField()
     old_effort_d = models.IntegerField()
+    test_effort = models.IntegerField(min=1, max=60, blank=True)
 
-    effort = models.IntegerField(
-        choices=[
-            [1, 'A'],
-            [2, 'B'],
-            [3, 'C'],
-            [4, 'D'],
-            [5, 'A'],
-            [6, 'B'],
-            [7, 'C']
-        ]
-    )
+    test_minimum = models.IntegerField(min=1, max=60, blank=True)
+
+    effort = models.IntegerField(min=1, max=60)
 
     old_effort = models.IntegerField()
     round_gains = models.IntegerField()

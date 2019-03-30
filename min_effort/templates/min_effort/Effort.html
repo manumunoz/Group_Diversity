@@ -17,25 +17,38 @@
     <!-- Coordination Outcome -->
     <div class="row">
         <div class="col-md-6 border border-dark rounded p-3 mb-1" id="light_bg">
-            <h6 id="dark_txt">
-                Your earnings will depend on the number <b>you pick</b> and on the <b>minimum</b> number picked in your group.
+            <h5>Calculator</h5>
+            <p>Write values for <b>your pick</b> and the <b>minimum pick</b> and you can see the potential earnings using the formula:
+                <br>
+                <b>{{ Constants.fix }} - your pick + {{ Constants.gain }} x minimum pick</b>.
                 <br><br>
-                The table below summarizes the experimental dollars you can get in any scenario, which
-                <img width="100%" src="{% static "min_effort/tbl_1.jpeg" %}"/>
-            </h6>
+                You can use the calculator {{ Constants.attempts }} times.
+            </p>
+            If <b>your pick</b> is:
+            <small>{% formfield player.test_effort label="" %}</small>
+            and the <b>minimum pick</b> is:
+            <br>
+            <small>{% formfield player.test_minimum label="" %}</small>
+
+            <a href='#' class='btn btn-danger' id="btn-calc" onclick="showResult()">Calculate</a>
+
+            <br><br>
+            <div id="result_msg" class="small message"></div>
+            <br>
+
+            <b>You earn</b>:
+{#            17 + 13#}
+            <br><br>
+            <h4><span id="id_test_result"> ...</span> {{ Constants.exp_currency }}</h4>
 
         </div>
         <div class="col-md-6 border border-dark rounded p-3 mb-1" id="medium_bg">
-            <h5 class="center" id="light_txt">Please make your pick:</h5>
+            <h5 class="center" id="light_txt">Decision:</h5>
+            <p id="light_txt">Please pick a number between 1 and 60:
+                            {% formfield player.effort label="" %}
+            </p>
             <br>
-            <div class="center">
-                <button name="effort" value="1" class="btn button btn-md"> 1 </button>
-                <button name="effort" value="2" class="btn button btn-md"> 2 </button>
-                <button name="effort" value="3" class="btn button btn-md"> 3 </button>
-                <button name="effort" value="4" class="btn button btn-md"> 4 </button>
-                <button name="effort" value="5" class="btn button btn-md"> 5 </button>
-                <button name="effort" value="6" class="btn button btn-md"> 6 </button>
-                <button name="effort" value="7" class="btn button btn-md"> 7 </button>
+                <button class="btn button btn-md"> Continue </button>
             </div>
         </div>
     </div>
@@ -43,12 +56,62 @@
 
 {% endblock %}
 
+{% block scripts %}
+<script type="text/javascript">
+var n_tests = 0;
+var MAX_TESTS = 3;
+
+function showResult() {
+    var result_msg = $('#result_msg');
+    result_msg.text('');
+
+    if (n_tests > MAX_TESTS - 1) {
+        alert('You have reached the maximum calculations allowed');
+        return;
+    }
+
+    var test_effort = parseInt($('#id_test_effort').val());
+    var test_minimum = parseInt($('#id_test_minimum').val());
+
+    if (test_effort < test_minimum) {
+        result_msg.text('Effort lower than minimum, calculation result not displayed');
+        return;
+    }
+
+    if (test_effort > 60 || test_effort < 1) {
+    result_msg.text('Your pick must be a number between 1 and 60');
+    return;
+    }
+
+    if (test_minimum > 60 || test_minimum < 1) {
+    result_msg.text('The minimum pick must be a number between 1 and 60');
+    return;
+    }
+
+    var r = 60 - test_effort + 2 * test_minimum;
+    $('#id_test_result').text(r);
+    n_tests++;
+
+    if (n_tests == MAX_TESTS) {
+        result_msg.text('You have reached the maximum calculations allowed');
+        $('#btn-calc').hide(200);
+    }
+}
+</script>
+{% endblock %}
+
+
+
 {% block styles %}
     <style type="text/css">
         #cy {
             width: 100%;
             height: 100%;
             display: block;
+        }
+        .message{
+            background-color: #FDD835;
+            color:#000000;
         }
         #light_bg{
             background-color: #CFD8DC;
