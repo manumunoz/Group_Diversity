@@ -71,25 +71,31 @@
             <h5>Part {{ Constants.part_alloc }}:</h5>
             <p id="dark_txt">
                 {% if player.chosen_pair == 1 %}
-                You pair was:
-                <b>chosen</b>
-                <br>
+                    You pair was:
+                    <br>
+                    <b>chosen</b>
+                    <br><br>
                     {% if player.chosen_role == 1 %}
-                        Your were:
+                        Your were in:
+                        <br>
                         <b>role A</b>
-                        <br>
+                        <br><br>
                         You kept:
-                        <b>{{ player.alloc_point }} {{ Constants.exp_currency }}</b>
-                    {% elif player.chosen_role == 0 %}
-                        Your were:
-                        <b>role B</b>
                         <br>
+                        <b>{{ player.alloc_points }} {{ Constants.exp_currency }}</b>
+                    {% elif player.chosen_role == 0 %}
+                        Your were in:
+                        <br>
+                        <b>role B</b>
+                        <br><br>
                         You received:
-                        <b>{{ player.alloc_point }} {{ Constants.exp_currency }}</b>
+                        <br>
+                        <b>{{ player.alloc_points }} {{ Constants.exp_currency }}</b>
                     {% endif %}
-                <br>
+                    <br>
                 {% else %}
                     You pair was:
+                    <br>
                     <b> not chosen</b>
                 {% endif %}
             </p>
@@ -111,7 +117,7 @@
                 <h5 id="bright_txt">{{ player.second_my_points }} {{ Constants.exp_currency }}</h5>
                 <br>
                 <h4 id="light_txt"> In part {{ Constants.part_alloc }} you earn:</h4>
-                <h5 id="bright_txt">{{ player.alloc_point }} {{ Constants.exp_currency }}</h5>
+                <h5 id="bright_txt">{{ player.alloc_points }} {{ Constants.exp_currency }}</h5>
             </div>
         </div>
         <div class="col-md-8 border border-dark rounded p-3 mb-1" id="medium_bg">

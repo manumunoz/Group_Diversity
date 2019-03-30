@@ -19,7 +19,7 @@ class Constants(BaseConstants):
     name_in_url = 'group_spillover'
     names = ['1', '2', '3', '4']
     players_per_group = len(names)
-    num_rounds = 1 #20
+    num_rounds = 5 #20
     # instructions_template = 'group_spillover/Instructions.html'
     #==================================
     # PAYOFFS
@@ -32,16 +32,24 @@ class Constants(BaseConstants):
     #==================================
     # CHOSEN ROUNDS
     chosen_num_rounds = 12
-    goal_value = 8
+    goal_value = 1 #8
     pay_rounds = [1,2,4,6,7,8,9,12,13,14,15,17]
     #==================================
     # Treatment & Group parameters
     part_pre_min = 1
     part_coord = 2
     part_post_min = 3
+    part_alloc = 4
     exp_currency = "experimental dollars"
     #------------------------------------------
-
+    low_fav = [1,2,3,4]
+    med_fav_1 = [1,3]
+    med_fav_2 = [2,4]
+    high_fav_1 = [1]
+    high_fav_2 = [2]
+    high_fav_3 = [3]
+    high_fav_4 = [4]
+    #------------------------------------------
 
 class Subsession(BaseSubsession):
     def creating_session(self):
@@ -57,21 +65,21 @@ class Subsession(BaseSubsession):
                 p.treat = next(treat)
 
             if p.treat == 1:
-                p.favorite = 1
+                p.type = 1
             elif p.treat == 2:
                 if p.id_in_group == 1 or p.id_in_group == 2:
-                    p.favorite = 1
+                    p.type = 1
                 else:
-                    p.favorite = 4
+                    p.type = 2
             else:
                 if p.id_in_group == 1:
-                    p.favorite = 1
+                    p.type = 1
                 elif p.id_in_group == 2:
-                    p.favorite = 2
+                    p.type = 2
                 elif p.id_in_group == 3:
-                    p.favorite = 3
+                    p.type = 3
                 else:
-                    p.favorite = 4
+                    p.type = 4
 
         num_players_err = 'Too many participants for such a short name list'
         # the following may create issues with mTurk sessions where num participants is doubled
@@ -153,10 +161,43 @@ class Group(BaseGroup):
         d = self.get_player_by_role('4')
 
         for player in [a, b, c, d]:
-            if self.coordination == 1 and player.action == player.favorite:
-                player.is_winner = True
+            if player.treat == 1:
+                if self.coordination == 1 and player.action in Constants.low_fav:
+                    player.is_winner = True
+                else:
+                    player.is_winner = False
+            elif player.treat == 2:
+                if self.coordination == 1 and player.action in Constants.med_fav_1:
+                    if player.type == 1:
+                        player.is_winner = True
+                    elif player.type == 2:
+                        player.is_winner = False
+                elif self.coordination == 1 and player.action in Constants.med_fav_2:
+                    if player.type == 1:
+                        player.is_winner = False
+                    elif player.type == 2:
+                        player.is_winner = True
             else:
-                player.is_winner = False
+                if self.coordination == 1 and player.action in Constants.high_fav_1:
+                    if player.type == 1:
+                        player.is_winner = True
+                    else:
+                        player.is_winner = False
+                elif self.coordination == 1 and player.action in Constants.high_fav_2:
+                    if player.type == 2:
+                        player.is_winner = True
+                    else:
+                        player.is_winner = False
+                elif self.coordination == 1 and player.action in Constants.high_fav_3:
+                    if player.type == 3:
+                        player.is_winner = True
+                    else:
+                        player.is_winner = False
+                elif self.coordination == 1 and player.action in Constants.high_fav_4:
+                    if player.type == 4:
+                        player.is_winner = True
+                    else:
+                        player.is_winner = False
 
         for player in [a, b, c, d]:
             if self.coordination == 1:
@@ -169,6 +210,30 @@ class Group(BaseGroup):
 
         for player in [a, b, c, d]:
             player.total_points = sum([player.points for player in player.in_all_rounds()])
+
+    # def set_coordination(self):
+    #     a = self.get_player_by_role('1')
+    #     b = self.get_player_by_role('2')
+    #     c = self.get_player_by_role('3')
+    #     d = self.get_player_by_role('4')
+    #
+    #     for player in [a, b, c, d]:
+    #         if self.coordination == 1 and player.action in player.favorite:
+    #             player.is_winner = True
+    #         else:
+    #             player.is_winner = False
+    #
+    #     for player in [a, b, c, d]:
+    #         if self.coordination == 1:
+    #             if player.is_winner is True:
+    #                 player.points = Constants.highpay
+    #             else:
+    #                 player.points = Constants.lowpay
+    #         else:
+    #             player.points = Constants.nopay
+    #
+    #     for player in [a, b, c, d]:
+    #         player.total_points = sum([player.points for player in player.in_all_rounds()])
 
     def total_points(self):
         players = self.get_players()
@@ -258,7 +323,8 @@ class Player(BasePlayer):
     total_points = models.IntegerField(initial=0)
     old_total_points = models.IntegerField(initial=0)
     is_winner = models.BooleanField()
-    favorite = models.IntegerField()
+    # favorite = models.IntegerField()
+    type = models.IntegerField()
     final_pay = models.FloatField()
     chosen_coord = models.IntegerField()
     chosen_points = models.IntegerField()

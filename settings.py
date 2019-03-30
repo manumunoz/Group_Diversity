@@ -156,7 +156,7 @@ SESSION_CONFIGS = [
         'display_name': "group_spillover",
         'num_demo_participants': 4,
         'app_sequence': ['group_spillover'],
-        'treatment': 1,
+        'treatment': 2,
         # 'use_browser_bots': True
     },
     {

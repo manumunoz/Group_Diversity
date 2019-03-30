@@ -75,7 +75,7 @@ class Group(BaseGroup):
             player.win_two = player.participant.vars['win_two']
             player.win_three = player.participant.vars['win_three']
             player.win_four = player.participant.vars['win_four']
-            player.total_points = player.participant.vars['group_points']
+            player.group_points = player.participant.vars['group_points']
             player.my_points = player.participant.vars['points']
             player.coordination = player.participant.vars['coordinations']
             #======================================
@@ -86,11 +86,12 @@ class Group(BaseGroup):
             player.second_effort = player.participant.vars['effort_2']
             player.second_min_effort = player.participant.vars['min_effort_2']
             player.second_my_points = player.participant.vars['effort_points_2']
-            player.total_points = player.first_my_points + player.my_points + player.second_my_points + player.alloc_point
             # ======================================
             player.chosen_pair = player.participant.vars['chosen_pair']
             player.chosen_role = player.participant.vars['chosen_role']
-            player.alloc_point = player.participant.vars['part_alloc_payoff']
+            player.alloc_points = player.participant.vars['part_alloc_payoff']
+            # ======================================
+            player.total_points = player.first_my_points + player.my_points + player.second_my_points + player.alloc_points
             # ======================================
 
 
@@ -107,7 +108,7 @@ class Player(BasePlayer):
     win_two = models.IntegerField()
     win_three = models.IntegerField()
     win_four = models.IntegerField()
-    total_points = models.IntegerField()
+    group_points = models.IntegerField()
     my_points = models.IntegerField()
     coordination = models.IntegerField()
     #======================================
@@ -121,7 +122,7 @@ class Player(BasePlayer):
     #======================================
     chosen_pair = models.IntegerField()
     chosen_role = models.IntegerField()
-    alloc_point = models.IntegerField()
+    alloc_points = models.IntegerField()
+    #======================================
     total_points = models.CurrencyField()
     #======================================
-

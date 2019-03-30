@@ -56,39 +56,33 @@ class Group(BaseGroup):
         if self.session.vars['chosen_player'] == 1:
             self.get_player_by_id(3).alloc_received = self.get_player_by_id(1).alloc
             self.get_player_by_id(1).alloc_received = Constants.pie - self.get_player_by_id(1).alloc
-            self.get_player_by_id(1).chosen_pair = 1
-            self.get_player_by_id(2).chosen_pair = 0
-            self.get_player_by_id(3).chosen_pair = 1
-            self.get_player_by_id(4).chosen_pair = 0
-            self.get_player_by_id(1).chosen_role = 1
-            self.get_player_by_id(3).chosen_role = 0
         elif self.session.vars['chosen_player'] == 2:
             self.get_player_by_id(4).alloc_received = self.get_player_by_id(2).alloc
             self.get_player_by_id(2).alloc_received = Constants.pie - self.get_player_by_id(2).alloc
-            self.get_player_by_id(1).chosen_pair = 0
-            self.get_player_by_id(2).chosen_pair = 1
-            self.get_player_by_id(3).chosen_pair = 0
-            self.get_player_by_id(4).chosen_pair = 1
-            self.get_player_by_id(2).chosen_role = 1
-            self.get_player_by_id(4).chosen_role = 0
         elif self.session.vars['chosen_player'] == 3:
             self.get_player_by_id(2).alloc_received = self.get_player_by_id(3).alloc
             self.get_player_by_id(3).alloc_received = Constants.pie - self.get_player_by_id(3).alloc
-            self.get_player_by_id(1).chosen_pair = 0
-            self.get_player_by_id(2).chosen_pair = 1
-            self.get_player_by_id(3).chosen_pair = 1
-            self.get_player_by_id(4).chosen_pair = 0
-            self.get_player_by_id(3).chosen_role = 1
-            self.get_player_by_id(2).chosen_role = 0
         else:
             self.get_player_by_id(1).alloc_received = self.get_player_by_id(4).alloc
             self.get_player_by_id(4).alloc_received = Constants.pie - self.get_player_by_id(4).alloc
+
+    def set_pairs(self):
+        if self.session.vars['chosen_player'] == 1:
             self.get_player_by_id(1).chosen_pair = 1
-            self.get_player_by_id(2).chosen_pair = 0
-            self.get_player_by_id(3).chosen_pair = 0
+            self.get_player_by_id(3).chosen_pair = 1
+            self.get_player_by_id(1).chosen_role = 1
+        elif self.session.vars['chosen_player'] == 2:
+            self.get_player_by_id(2).chosen_pair = 1
+            self.get_player_by_id(4).chosen_pair = 1
+            self.get_player_by_id(2).chosen_role = 1
+        elif self.session.vars['chosen_player'] == 3:
+            self.get_player_by_id(2).chosen_pair = 1
+            self.get_player_by_id(3).chosen_pair = 1
+            self.get_player_by_id(3).chosen_role = 1
+        else:
+            self.get_player_by_id(1).chosen_pair = 1
             self.get_player_by_id(4).chosen_pair = 1
             self.get_player_by_id(4).chosen_role = 1
-            self.get_player_by_id(1).chosen_role = 0
 
     def round_payoffs(self):
         for player in self.get_players():
@@ -101,8 +95,8 @@ class Player(BasePlayer):
     points_alloc = models.IntegerField()
     gender = models.IntegerField()
     age = models.IntegerField(min=18, max=100)
-    chosen_pair = models.IntegerField()
-    chosen_role = models.IntegerField()
+    chosen_pair = models.IntegerField(initial=0)
+    chosen_role = models.IntegerField(initial=0)
 
     alloc = models.PositiveIntegerField(min=0, max=Constants.pie)
 

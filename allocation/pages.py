@@ -18,6 +18,7 @@ class AllocationWP(WaitPage):
     def after_all_players_arrive(self):
         self.group.chosen_allocation()
         self.group.set_allocations()
+        self.group.set_pairs()
         self.group.round_payoffs()
         # self.group.total_payoff()
 
@@ -25,6 +26,9 @@ class AllocationWP(WaitPage):
 class ClosingPage(Page):
     form_model = 'player'
     form_fields = ['gender','age']
+
+    def before_next_page(self):
+        self.player.var_between_apps()
 
 
 page_sequence = [
