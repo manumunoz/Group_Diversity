@@ -163,7 +163,7 @@ SESSION_CONFIGS = [
         'name': 'low_diversity',
         'display_name': "Low Diversity",
         'num_demo_participants': 4,
-        'app_sequence': ['min_effort', 'group_spillover', 'min_effort_2', 'pay'],
+        'app_sequence': ['min_effort', 'group_spillover', 'min_effort_2', 'allocation', 'pay'],
         'treatment': 1,
         # 'use_browser_bots': True
     },

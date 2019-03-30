@@ -19,7 +19,7 @@ class Constants(BaseConstants):
     name_in_url = 'group_spillover'
     names = ['1', '2', '3', '4']
     players_per_group = len(names)
-    num_rounds = 20
+    num_rounds = 1 #20
     # instructions_template = 'group_spillover/Instructions.html'
     #==================================
     # PAYOFFS

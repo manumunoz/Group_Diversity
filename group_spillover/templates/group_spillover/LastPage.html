@@ -32,9 +32,9 @@
                 The color shows the <b> action </b> chosen by each player in this last round.
                 <br><br>
                 {% if group.coordination == 1 %}
-                 <b>The coordination was successful.</b>
+                 <b class="message">The coordination was successful.</b>
                 {% else %}
-                 <b>The coordination was not successful.</b>
+                 <b class="message">The coordination was not successful.</b>
                 {% endif %}
             </h6>
         <div id="cy"></div>
@@ -205,6 +205,10 @@
             background-color: #FDD835;
             color: #000000;
             border: 2px solid #3E2723
+        }
+        .message{
+            background-color: #E1BEE7;
+            color:#000000;
         }
     </style>
 {% endblock %}

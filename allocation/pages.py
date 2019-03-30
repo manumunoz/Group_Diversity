@@ -24,7 +24,7 @@ class AllocationWP(WaitPage):
 
 class ClosingPage(Page):
     form_model = 'player'
-    form_fields = ['gender']
+    form_fields = ['gender','age']
 
 
 page_sequence = [

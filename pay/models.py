@@ -37,6 +37,7 @@ class Constants(BaseConstants):
     part_pre_min = 1
     part_coord = 2
     part_post_min = 3
+    part_alloc = 4
     #------------------------------------------
     # Min Effort
     gain = 20
@@ -85,7 +86,13 @@ class Group(BaseGroup):
             player.second_effort = player.participant.vars['effort_2']
             player.second_min_effort = player.participant.vars['min_effort_2']
             player.second_my_points = player.participant.vars['effort_points_2']
-            player.total_points = player.first_my_points + player.my_points + player.second_my_points
+            player.total_points = player.first_my_points + player.my_points + player.second_my_points + player.alloc_point
+            # ======================================
+            player.chosen_pair = player.participant.vars['chosen_pair']
+            player.chosen_role = player.participant.vars['chosen_role']
+            player.alloc_point = player.participant.vars['part_alloc_payoff']
+            # ======================================
+
 
 class Player(BasePlayer):
     first_effort_a = models.IntegerField()
@@ -111,5 +118,10 @@ class Player(BasePlayer):
     second_effort = models.IntegerField()
     second_min_effort = models.IntegerField()
     second_my_points = models.IntegerField()
+    #======================================
+    chosen_pair = models.IntegerField()
+    chosen_role = models.IntegerField()
+    alloc_point = models.IntegerField()
     total_points = models.CurrencyField()
+    #======================================
 

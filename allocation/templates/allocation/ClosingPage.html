@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
       <div class="col-sm-12 border border-dark text-white rounded" id="upper">
-            <h2>Su participación en este experimento termina aquí.</h2>
+            <h2>Your pariticipation in this study concludes here.</h2>
       </div>
     </div>
 </div>
@@ -14,14 +14,20 @@
 {% block content %}
 <div class="container">
     <div class="row">
-      <div class="col-sm-12 border rounded" id="network">
+      <div class="col-sm-12 border rounded" id="medium_bg">
         <p>
-           En la siguiente pantalla usted será informado de sus ganancias. Después de eso, por favor permanezca sentado hasta
-            que lo hayan llamando para entregarle su pago.
+           In the following screen you will be informed of your earnings. Afterwards, please remain seated until you are
+            called to receive your payment.
 
             <br><br>
 
-            Para concluir, por favor presione el botón que indique su género:
+            To conclude, please write your age in the box and click the button indicating your gender:
+
+            <br>
+
+            <span>{% formfield player.age label="Your age" %}</span>
+
+            Your gender:
 
             <br><br>
 
@@ -41,6 +47,10 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
+        }
+        #medium_bg{
+            background-color: #37474F;
+            color: #ffffff;
         }
         .buttonname {
             background-color: #EEE8AA;
