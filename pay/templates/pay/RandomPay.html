@@ -36,10 +36,9 @@
             <p id="dark_txt">
                 The {{ Constants.chosen_num_rounds }} rounds chosen were:
                 <div class="center">
-            <b>{{ Constants.pay_rounds }}</b>
-{#                    <button type="button" class="btn button btn-dark" disabled>{{ Constants.pay_rounds }}</button>#}
+                    <b>{{ Constants.pay_rounds }}</b>
                 </div>
-                 <br>
+                <br>
                 You coordinated in <b> {{ player.coordination }} </b> rounds, as follows:
                 <br><br>
                 <div class="center">
@@ -58,20 +57,15 @@
     <!-- Min. Effort TWO -->
         <div class="col-md-2 border border-dark rounded p-3 mb-1" id="light_bg">
             <h5>Part {{ Constants.part_post_min }}:</h5>
-              <p id="medium_txt">
-                        Your pick:
-                        <br>
-                                          <b>{{ player.second_effort }}</b>
-
-{#                        <button type="button" class="btn button btn-dark btn-sm" disabled>{{ player.second_effort }}</button>#}
-                    <br><br>
-                        Minimum pick:
-                        <br>
-                                                            <b>{{ player.second_min_effort }}</b>
-
-{#                        <button type="button" class="btn button btn-dark btn-sm" disabled>{{ player.second_min_effort }}</button>#}
-
-                </p>
+            <p id="medium_txt">
+                Your pick:
+                <br>
+                <b>{{ player.second_effort }}</b>
+                <br><br>
+                Minimum pick:
+                <br>
+                <b>{{ player.second_min_effort }}</b>
+            </p>
         </div>
     <!-- Allocation -->
         <div class="col-md-3 border border-dark rounded p-3 mb-1" id="light_bg">
@@ -81,25 +75,6 @@
                     You pair was:
                     <br>
                     <b>chosen</b>
-                    <br><br>
-                    {% if player.chosen_role == 1 %}
-                        Your were in:
-                        <br>
-                        <b>role A</b>
-{#                        <br><br>#}
-{#                        You kept:#}
-{#                        <br>#}
-{#                        <b>{{ player.alloc_points }} {{ Constants.exp_currency }}</b>#}
-                    {% elif player.chosen_role == 0 %}
-                        Your were in:
-                        <br>
-                        <b>role B</b>
-{#                        <br><br>#}
-{#                        You received:#}
-{#                        <br>#}
-{#                        <b>{{ player.alloc_points }} {{ Constants.exp_currency }}</b>#}
-                    {% endif %}
-                    <br>
                 {% else %}
                     You pair was:
                     <br>
