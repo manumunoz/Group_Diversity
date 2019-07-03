@@ -7,21 +7,21 @@ import random
 
 class PlayerBot(Bot):
     def play_round(self):
-        yield (pages.Start)
+        yield (pages.Start_es)
 
-        yield (pages.FirstSignal,
+        yield (pages.FirstSignal_es,
                {'first': random.choice([1,2,3,4])})
 
-        yield (pages.SecondSignal,
+        yield (pages.SecondSignal_es,
                {'second': random.choice([1,2,3,4])})
 
-        yield (pages.Action,
+        yield (pages.Action_es,
                {'action': random.choice([1,2,3,4])})
 
         if self.round_number == Constants.num_rounds:
-            yield (pages.LastPage)
+            yield (pages.LastPage_es)
 
-            yield (pages.Results)
+            yield (pages.Results_es)
 
 
 # otree test low_diversity --export=test_low_diversity

@@ -159,6 +159,30 @@ SESSION_CONFIGS = [
         # 'treatment': 1,
         # 'use_browser_bots': True
     },
+    {
+        'name': 'low_diversity_es',
+        'display_name': "Low Diversity ES",
+        'num_demo_participants': 4,
+        'app_sequence': ['min_effort_es', 'group_spillover_es', 'min_effort_2_es', 'allocation_es', 'pay_es'],
+        'treatment': 1,
+        # 'use_browser_bots': True
+    },
+    {
+        'name': 'medium_diversity_es',
+        'display_name': "Mediumd Diversity ES",
+        'num_demo_participants': 4,
+        'app_sequence': ['min_effort_es', 'group_spillover_es', 'min_effort_2_es', 'pay_es'],
+        'treatment': 2,
+        # 'use_browser_bots': True
+    },
+    {
+        'name': 'high_diversity_es',
+        'display_name': "High Diversity ES",
+        'num_demo_participants': 4,
+        'app_sequence': ['min_effort_es', 'group_spillover_es', 'min_effort_2_es', 'pay_es'],
+        'treatment': 3,
+        # 'use_browser_bots': True
+    },
     # {
     #     'name': 'min_effort',
     #     'display_name': "min_effort",
@@ -191,30 +215,30 @@ SESSION_CONFIGS = [
     #     'treatment': 2,
     #     # 'use_browser_bots': True
     # },
-    {
-        'name': 'low_diversity',
-        'display_name': "Low Diversity",
-        'num_demo_participants': 4,
-        'app_sequence': ['min_effort', 'group_spillover', 'min_effort_2', 'allocation', 'pay'],
-        'treatment': 1,
-        # 'use_browser_bots': True
-    },
-    {
-        'name': 'medium_diversity',
-        'display_name': "Mediumd Diversity",
-        'num_demo_participants': 4,
-        'app_sequence': ['min_effort', 'group_spillover', 'min_effort_2', 'pay'],
-        'treatment': 2,
-        # 'use_browser_bots': True
-    },
-    {
-        'name': 'high_diversity',
-        'display_name': "High Diversity",
-        'num_demo_participants': 4,
-        'app_sequence': ['min_effort', 'group_spillover', 'min_effort_2', 'pay'],
-        'treatment': 3,
-        # 'use_browser_bots': True
-    },
+    # {
+    #     'name': 'low_diversity',
+    #     'display_name': "Low Diversity",
+    #     'num_demo_participants': 4,
+    #     'app_sequence': ['min_effort', 'group_spillover', 'min_effort_2', 'allocation', 'pay'],
+    #     'treatment': 1,
+    #     # 'use_browser_bots': True
+    # },
+    # {
+    #     'name': 'medium_diversity',
+    #     'display_name': "Mediumd Diversity",
+    #     'num_demo_participants': 4,
+    #     'app_sequence': ['min_effort', 'group_spillover', 'min_effort_2', 'pay'],
+    #     'treatment': 2,
+    #     # 'use_browser_bots': True
+    # },
+    # {
+    #     'name': 'high_diversity',
+    #     'display_name': "High Diversity",
+    #     'num_demo_participants': 4,
+    #     'app_sequence': ['min_effort', 'group_spillover', 'min_effort_2', 'pay'],
+    #     'treatment': 3,
+    #     # 'use_browser_bots': True
+    # },
 ]
 
 # anything you put after the below line will override

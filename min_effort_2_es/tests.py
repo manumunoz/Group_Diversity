@@ -8,10 +8,10 @@ import random
 class PlayerBot(Bot):
 
     def play_round(self):
-        yield (pages.Effort,
+        yield (pages.Effort_es,
                {'effort': random.choice(range(1,60,1))})
 
-        yield (pages.PostEffort)
+        yield (pages.PostEffort_es)
 
 
 # otree test min_effort_calc

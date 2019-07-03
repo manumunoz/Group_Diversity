@@ -82,10 +82,10 @@ class Player(BasePlayer):
         return {1: '1', 2: '2', 3: '3', 4: '4'}[self.id_in_group]
 
     def var_between_apps(self):
-        self.participant.vars['effort_a'] = self.effort_a
-        self.participant.vars['effort_b'] = self.effort_b
-        self.participant.vars['effort_c'] = self.effort_c
-        self.participant.vars['effort_d'] = self.effort_d
-        self.participant.vars['effort'] = self.effort
-        self.participant.vars['min_effort'] = self.group.min_effort
-        self.participant.vars['effort_points'] = self.round_gains
+        self.participant.vars['effort_a_2'] = self.effort_a
+        self.participant.vars['effort_b_2'] = self.effort_b
+        self.participant.vars['effort_c_2'] = self.effort_c
+        self.participant.vars['effort_d_2'] = self.effort_d
+        self.participant.vars['effort_2'] = self.effort
+        self.participant.vars['min_effort_2'] = self.group.min_effort
+        self.participant.vars['effort_points_2'] = self.round_gains

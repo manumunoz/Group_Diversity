@@ -40,7 +40,7 @@ class Constants(BaseConstants):
     part_alloc = 4
     #------------------------------------------
     # Payoffs
-    exp_currency = "experimental dollars"
+    exp_currency = "dólares experimentales"
     currency = "pesos"
     currency_exchange = 80
     points_exchange = 1
@@ -101,7 +101,7 @@ class Player(BasePlayer):
     first_effort_d = models.IntegerField()
     first_effort = models.IntegerField()
     first_min_effort = models.IntegerField()
-    first_my_points = models.IntegerField()
+    first_my_points = models.FloatField()
     #======================================
     win_one = models.IntegerField()
     win_two = models.IntegerField()
@@ -118,11 +118,11 @@ class Player(BasePlayer):
     second_effort_d = models.IntegerField()
     second_effort = models.IntegerField()
     second_min_effort = models.IntegerField()
-    second_my_points = models.IntegerField()
+    second_my_points = models.FloatField()
     #======================================
     chosen_pair = models.IntegerField()
     chosen_role = models.IntegerField()
-    alloc_points = models.IntegerField()
+    alloc_points = models.FloatField()
     #======================================
     total_points = models.CurrencyField()
     payoff = models.FloatField()

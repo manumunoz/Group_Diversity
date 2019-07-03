@@ -7,11 +7,7 @@ from .models import Constants
 class PlayerBot(Bot):
 
     def play_round(self):
-        yield (pages.RandomPay)
+        yield (pages.RandomPay_es)
 
 # App Test
 # otree test pay_es --export=test_pay_es
-# Treatment Test
-# otree test sticky_es --export=test_sticky_es
-# otree test blurry_es --export=test_blurry_es
-# otree test blurry_cost_es --export=test_blurry_cost_es
