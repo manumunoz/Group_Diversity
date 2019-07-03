@@ -136,6 +136,14 @@ SESSION_CONFIGS = [
         # 'use_browser_bots': True
     },
     {
+        'name': 'min_effort_2_es',
+        'display_name': "min_effort_2_es",
+        'num_demo_participants': 4,
+        'app_sequence': ['min_effort_2_es'],
+        # 'treatment': 1,
+        # 'use_browser_bots': True
+    },
+    {
         'name': 'allocation',
         'display_name': "allocation",
         'num_demo_participants': 4,

@@ -1,0 +1,153 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 border rounded p-1 mb-0" id="dark_bg">
+            <h1 id="light_txt"> Parte {{ Constants.part_pre_min }}. <span id="bright_txt">Elección de Números</span></h1>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <!-- Coordination Outcome -->
+    <div class="row">
+        <div class="col-md-6 border border-dark rounded p-3 mb-1" id="light_bg">
+            <h5>Calculadora</h5>
+            <p>Escriba los valores de <b>su elección</b> y del <b>menor número elegido</b> y podrá ver las ganancias
+                potenciales usando la fórmula:
+                <br>
+                <b>{{ Constants.fix }} - ({{ Constants.cost }} x su elección) + ({{ Constants.gain }} x menor número elegido)</b>.
+                <br><br>
+                Usted puede usar la calculadora {{ Constants.attempts }} veces.
+            </p>
+            Si <b>su elección</b> es:
+            <small>{% formfield player.test_effort label="" %}</small>
+            y el <b>menor número elegido</b> es:
+            <br>
+            <small>{% formfield player.test_minimum label="" %}</small>
+
+            <a href='#' class='btn btn-danger' id="btn-calc" onclick="showResult()">Calcular</a>
+
+            <br><br>
+            <div id="result_msg" class="small message"></div>
+            <br>
+
+            <b>Usted gana</b>:
+{#            17 + 13#}
+            <br><br>
+            <h4><span id="id_test_result"> ...</span> {{ Constants.exp_currency }}</h4>
+
+        </div>
+        <div class="col-md-6 border border-dark rounded p-3 mb-1" id="medium_bg">
+            <h5 class="center" id="light_txt">Decisión:</h5>
+            <p id="light_txt">Por favor elija un número entre 1 y 60:
+                            {% formfield player.effort label="" %}
+            </p>
+            <br>
+                <button class="btn button btn-md"> Continuar </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+var n_tests = 0;
+var MAX_TESTS = 3;
+
+function showResult() {
+    var result_msg = $('#result_msg');
+    result_msg.text('');
+
+    if (n_tests > MAX_TESTS - 1) {
+        alert('Usted ha realizado el máximo número de cálculos permitido');
+        return;
+    }
+
+    var test_effort = parseInt($('#id_test_effort').val());
+    var test_minimum = parseInt($('#id_test_minimum').val());
+
+    if (test_effort < test_minimum) {
+        result_msg.text('Su esfuerzo es menor que el mínimo, esto no genera un resultado');
+        return;
+    }
+
+    if (test_effort > 60 || test_effort < 1) {
+    result_msg.text('Su elección debe ser un número entre 1 y 60');
+    return;
+    }
+
+    if (test_minimum > 60 || test_minimum < 1) {
+    result_msg.text('El menor número elegido debe ser un número entre 1 y 60');
+    return;
+    }
+
+    var r = 60 - test_effort + 2 * test_minimum;
+    $('#id_test_result').text(r);
+    n_tests++;
+
+    if (n_tests == MAX_TESTS) {
+        result_msg.text('Usted ha realizado el máximo número de cálculos permitido');
+        $('#btn-calc').hide(200);
+    }
+}
+</script>
+{% endblock %}
+
+
+
+{% block styles %}
+    <style type="text/css">
+        #cy {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .message{
+            background-color: #FDD835;
+            color:#000000;
+        }
+        #light_bg{
+            background-color: #E0E0E0;
+        }
+        #medium_bg{
+            background-color: #212121;
+        }
+
+        #dark_bg{
+            background-color: #212121;
+        }
+        #light_txt{
+            color: #ffffff;
+        }
+        #medium_txt{
+            color: #3E2723;
+        }
+        #dark_txt{
+            color: #000000;
+        }
+        #bright_txt {
+            color: #B3E5FC;
+        }
+        .center {
+            text-align: center;
+        }
+        .button {
+            background-color: #FDD835;
+            color: #37474F;
+            border: 2px solid #F9A825
+        }
+        .button:hover {
+            background-color: #B3E5FC;
+            color: #000000;
+            border: 2px solid #3E2723
+        }
+    </style>
+{% endblock %}
