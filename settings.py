@@ -144,26 +144,34 @@ SESSION_CONFIGS = [
         # 'use_browser_bots': True
     },
     {
+        'name': 'allocation_es',
+        'display_name': "allocation_es",
+        'num_demo_participants': 4,
+        'app_sequence': ['allocation_es'],
+        # 'treatment': 1,
+        # 'use_browser_bots': True
+    },
+    # {
+    #     'name': 'min_effort',
+    #     'display_name': "min_effort",
+    #     'num_demo_participants': 4,
+    #     'app_sequence': ['min_effort'],
+    #     # 'treatment': 1,
+    #     # 'use_browser_bots': True
+    # },
+    # {
+    #     'name': 'min_effort_2',
+    #     'display_name': "min_effort_2",
+    #     'num_demo_participants': 4,
+    #     'app_sequence': ['min_effort_2'],
+    #     # 'treatment': 1,
+    #     # 'use_browser_bots': True
+    # },
+    {
         'name': 'allocation',
         'display_name': "allocation",
         'num_demo_participants': 4,
         'app_sequence': ['allocation'],
-        # 'treatment': 1,
-        # 'use_browser_bots': True
-    },
-    {
-        'name': 'min_effort',
-        'display_name': "min_effort",
-        'num_demo_participants': 4,
-        'app_sequence': ['min_effort'],
-        # 'treatment': 1,
-        # 'use_browser_bots': True
-    },
-    {
-        'name': 'min_effort_2',
-        'display_name': "min_effort_2",
-        'num_demo_participants': 4,
-        'app_sequence': ['min_effort_2'],
         # 'treatment': 1,
         # 'use_browser_bots': True
     },

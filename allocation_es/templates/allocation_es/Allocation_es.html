@@ -1,0 +1,77 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 border rounded p-1 mb-0" id="dark_bg">
+            <h1 id="light_txt"> Parte {{ Constants.part_alloc }}. <span id="bright_txt">Asignación</span></h1>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <!-- Coordination Outcome -->
+    <div class="row">
+        <div class="col-md-12 border border-dark rounded p-3 mb-1" id="medium_bg">
+            <h4 class="center" id="light_txt">Decisión:</h4>
+            <br>
+            <p id ="light_txt">Escriba en la casilla cuánto de los <span id="bright_txt">{{ Constants.pie }} {{ Constants.exp_currency }}</span> quiere enviarle al otro participante en su grupo:</p>
+            <small>{% formfield player.alloc label="" %}</small>
+            <br>
+            <p id="light_txt">Si su  asignación es elegida por el computador, la cantidad que no envíe será para usted.</p>
+            <br>
+                <button class="btn button btn-md"> Continuar </button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block styles %}
+    <style type="text/css">
+        #cy {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        #light_bg{
+            background-color: #E0E0E0;
+        }
+        #medium_bg{
+            background-color: #37474F;
+        }
+
+        #dark_bg{
+            background-color: #006064;
+        }
+        #light_txt{
+            color: #ffffff;
+        }
+        #medium_txt{
+            color: #006064;
+        }
+        #dark_txt{
+            color: #000000;
+        }
+        #bright_txt {
+            color: #FF5722;
+        }
+        .center {
+            text-align: center;
+        }
+        .button {
+            background-color: #006064;
+            color: #ffffff;
+            border: 2px solid #ffffff
+        }
+        .button:hover {
+            background-color: #FF5722;
+            color: #ffffff;
+            border: 2px solid #ffffff
+        }
+    </style>
+{% endblock %}
