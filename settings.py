@@ -144,6 +144,14 @@ SESSION_CONFIGS = [
         # 'use_browser_bots': True
     },
     {
+        'name': 'group_spillover_es',
+        'display_name': "group_spillover_es",
+        'num_demo_participants': 4,
+        'app_sequence': ['group_spillover_es'],
+        'treatment': 2,
+        # 'use_browser_bots': True
+    },
+    {
         'name': 'allocation_es',
         'display_name': "allocation_es",
         'num_demo_participants': 4,
@@ -167,22 +175,22 @@ SESSION_CONFIGS = [
     #     # 'treatment': 1,
     #     # 'use_browser_bots': True
     # },
-    {
-        'name': 'allocation',
-        'display_name': "allocation",
-        'num_demo_participants': 4,
-        'app_sequence': ['allocation'],
-        # 'treatment': 1,
-        # 'use_browser_bots': True
-    },
-    {
-        'name': 'group_spillover',
-        'display_name': "group_spillover",
-        'num_demo_participants': 4,
-        'app_sequence': ['group_spillover'],
-        'treatment': 2,
-        # 'use_browser_bots': True
-    },
+    # {
+    #     'name': 'allocation',
+    #     'display_name': "allocation",
+    #     'num_demo_participants': 4,
+    #     'app_sequence': ['allocation'],
+    #     # 'treatment': 1,
+    #     # 'use_browser_bots': True
+    # },
+    # {
+    #     'name': 'group_spillover',
+    #     'display_name': "group_spillover",
+    #     'num_demo_participants': 4,
+    #     'app_sequence': ['group_spillover'],
+    #     'treatment': 2,
+    #     # 'use_browser_bots': True
+    # },
     {
         'name': 'low_diversity',
         'display_name': "Low Diversity",
