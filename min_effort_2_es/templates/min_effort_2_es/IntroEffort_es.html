@@ -14,20 +14,40 @@
 
 {% block content %}
 <div class="container">
-    <!-- Coordination Outcome -->
     <div class="row">
-        <div class="col-md-12 border border-dark rounded p-3 mb-1" id="light_bg">
-            <h6 id="dark_txt">
-                Al final del experimento usted será informado del número elegido por cada jugador en su grupo, y de sus
-                ganancias en la Parte {{ Constants.part_post_min }}
-            </h6>
+        <div class="col-sm-12 border rounded" id="light_bg">
+            <br>
+            <h4>Antes de continuar, por favor conteste las siguientes preguntas de comprensión:</h4>
+            <br>
+            <p>
+            <b>1. En la Parte {{ Constants.part_post_min }} va a interactuar con el mismo grupo de participantes de la
+                Parte {{ Constants.part_coord }}?</b>
+            <br>
+            <small>{% formfield player.q_samegroup label="" %}</small>
+            </p>
+            <p>
+            <b><i>Considere el caso en el que usted eligió 25 y los números elegidos por los otros tres participantes son 19, 49 y 36.
+                Por favor responda a las siguientes preguntas:</i></b>
+            </p>
+            <br>
+            <p>
+            <b>2. Cuál es el menor número elegido en su grupo?</b>
+            <br>
+            <small>{% formfield player.q_min label="" %}</small>
+            </p>
+            <p>
+            <b>3. Cuántos dólares experimentales ganaría usted en este ejemplo?</b>
+            <br>
+            <small>{% formfield player.q_pay label="" %}</small>
+            </p>
             <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Continuar </button>
-          <br><br>
+            <br><br>
         </div>
     </div>
 </div>
 
 {% endblock %}
+
 
 {% block styles %}
     <style type="text/css">
@@ -41,14 +61,14 @@
             color:#000000;
         }
         #light_bg{
-            background-color: #E0E0E0;
+            background-color: #CFD8DC;
         }
         #medium_bg{
-            background-color: #212121;
+            background-color: #37474F;
         }
 
         #dark_bg{
-            background-color: #212121;
+            background-color: #263238;
         }
         #light_txt{
             color: #ffffff;

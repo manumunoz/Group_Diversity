@@ -5,29 +5,23 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 border rounded p-1 mb-0" id="dark_bg">
-            <h1 id="light_txt"> Parte {{ Constants.part_post_min }}. <span id="bright_txt">Elección de Números</span></h1>
+            <h1 id="light_txt"> Parte {{ Constants.part_pre_min }}. <span id="bright_txt">Elección de Números</span></h1>
         </div>
     </div>
 </div>
 {% endblock %}
-
 
 {% block content %}
 <div class="container">
-    <!-- Coordination Outcome -->
     <div class="row">
-        <div class="col-md-12 border border-dark rounded p-3 mb-1" id="light_bg">
-            <h6 id="dark_txt">
-                Al final del experimento usted será informado del número elegido por cada jugador en su grupo, y de sus
-                ganancias en la Parte {{ Constants.part_post_min }}
-            </h6>
-            <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Continuar </button>
-          <br><br>
+    <!-- Network -->
+        <div class="col-md-12 border border-dark rounded p-3 mb-1" id="dark_bg">
+            <button type="otree-btn-next" class="btn button btn-md"> Comenzar</button>
         </div>
     </div>
 </div>
-
 {% endblock %}
+
 
 {% block styles %}
     <style type="text/css">
@@ -41,14 +35,14 @@
             color:#000000;
         }
         #light_bg{
-            background-color: #E0E0E0;
+            background-color: #CFD8DC;
         }
         #medium_bg{
-            background-color: #212121;
+            background-color: #37474F;
         }
 
         #dark_bg{
-            background-color: #212121;
+            background-color: #263238;
         }
         #light_txt{
             color: #ffffff;

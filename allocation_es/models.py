@@ -100,6 +100,34 @@ class Player(BasePlayer):
 
     alloc = models.PositiveIntegerField(min=0, max=Constants.pie)
 
+    q_samegroup = models.PositiveIntegerField(
+        choices=[
+            [1, 'Sí'],
+            [2, 'No'],
+        ],
+        widget=widgets.RadioSelect
+    )
+
+    q_implement = models.PositiveIntegerField(
+        choices=[
+            [1, 'La asignación de los cuatro participantes serán implementada'],
+            [2, 'Dos de las asignaciones serán implementadas aleatoriamente'],
+            [3, 'Ninguna de las asignaciones será implementadas'],
+            [4, 'Una de las asignaciones será implementada aleatoriamente'],
+        ],
+        widget=widgets.RadioSelect
+    )
+
+    q_gains = models.PositiveIntegerField(
+        choices=[
+            [1, 'Yo no gano ningún dólar experimental'],
+            [2, 'Yo gano el número de dólares experimentales que envíe'],
+            [3, 'Yo gano 100 menos el número de dólares experimentales que envíe'],
+            [4, 'Yo gano el número de dólares experimentales que el otro participante envíe'],
+        ],
+        widget=widgets.RadioSelect
+    )
+
     def var_between_apps(self):
         self.participant.vars['part_alloc_payoff'] = self.points_alloc
         self.participant.vars['chosen_pair'] = self.chosen_pair

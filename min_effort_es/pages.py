@@ -6,6 +6,31 @@ from collections import OrderedDict
 import json
 
 
+class StartWP(WaitPage):
+    wait_for_all_groups = True
+
+
+class Start_es(Page):
+    pass
+
+class BeforeIntroEffortWP(WaitPage):
+    wait_for_all_groups = True
+
+
+class IntroEffort_es(Page):
+    form_model = 'player'
+    form_fields = ['q_min','q_pay']
+
+    def q_min_error_message(self, value):
+        if value != 2:
+            return 'Usted no eligió el menor número entre las opciones'
+
+    def q_pay_error_message(self, value):
+        if value != 2:
+            return 'Recuerde que usted paga un costo de 1 multiplicado por el número que seleccione y recibe 2 por el ' \
+                   'menor número elegido en su grupo'
+
+
 class BeforeEffortWP(WaitPage):
     wait_for_all_groups = True
 
@@ -31,6 +56,10 @@ class PostEffort_es(Page):
 
 
 page_sequence = [
+    StartWP,
+    Start_es,
+    BeforeIntroEffortWP,
+    IntroEffort_es,
     BeforeEffortWP,
     Effort_es,
     BeforeNextRoundWP,

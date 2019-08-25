@@ -8,6 +8,11 @@ import random
 class PlayerBot(Bot):
 
     def play_round(self):
+        yield (pages.Start_es)
+
+        yield (pages.IntroEffort_es,
+               {'q_min': 2, 'q_pay': 2})
+
         yield (pages.Effort_es,
                {'effort': random.choice(range(1,60,1))})
 

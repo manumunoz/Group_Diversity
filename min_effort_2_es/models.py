@@ -78,6 +78,35 @@ class Player(BasePlayer):
     round_gains = models.FloatField()
     old_round_gains = models.FloatField()
 
+
+    q_samegroup = models.PositiveIntegerField(
+        choices=[
+            [1, 'Sí'],
+            [2, 'No'],
+        ],
+        widget=widgets.RadioSelect
+    )
+
+    q_min = models.PositiveIntegerField(
+        choices=[
+            [1, '36'],
+            [2, '25'],
+            [3, '49'],
+            [4, '19'],
+        ],
+        widget=widgets.RadioSelect
+    )
+
+    q_pay = models.PositiveIntegerField(
+        choices=[
+            [1, '90 – (1.5 x 25) + (2 x 19) = 90.5'],
+            [2, '90 + (1.5 x 19) – (2 x 25) = 68.5'],
+            [3, '90 + (1.5 x 25) – (2 x 19) = 89.5'],
+            [4, '90 – (1.5 x 19) + (2 x 25) = 111.5'],
+        ],
+        widget=widgets.RadioSelect
+    )
+
     def role(self):
         return {1: '1', 2: '2', 3: '3', 4: '4'}[self.id_in_group]
 

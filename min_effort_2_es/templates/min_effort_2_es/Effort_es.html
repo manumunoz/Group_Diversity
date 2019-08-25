@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 border rounded p-1 mb-0" id="dark_bg">
-            <h1 id="light_txt"> Parte {{ Constants.part_pre_min }}. <span id="bright_txt">Elección de Números</span></h1>
+            <h1 id="light_txt"> Parte {{ Constants.part_post_min }}. <span id="bright_txt">Elección de Números</span></h1>
         </div>
     </div>
 </div>
@@ -75,7 +75,7 @@ function showResult() {
     var test_minimum = parseInt($('#id_test_minimum').val());
 
     if (test_effort < test_minimum) {
-        result_msg.text('Su esfuerzo es menor que el mínimo, esto no genera un resultado');
+        result_msg.text('Su elección es menor que el mínimo, esto no genera un resultado');
         return;
     }
 

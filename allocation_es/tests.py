@@ -8,6 +8,11 @@ import random
 class PlayerBot(Bot):
 
     def play_round(self):
+        yield (pages.Start_es)
+
+        yield (pages.IntroAlloc_es,
+               {'q_samegroup': 1, 'q_implement': 4, 'q_gains': 3})
+
         yield (pages.Allocation_es,
                {'alloc': random.choice([0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100])})
 

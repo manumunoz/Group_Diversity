@@ -33,7 +33,7 @@ class Constants(BaseConstants):
     # CHOSEN ROUNDS
     chosen_num_rounds = 12
     goal_value = 8
-    pay_rounds = [1,2,4,6,7,8,9,12,13,14,15,17]
+    pay_rounds = [2,4,6,7,8,9,12,13,14,15,17,20]
     #==================================
     # Treatment & Group parameters
     part_pre_min = 1
@@ -212,30 +212,6 @@ class Group(BaseGroup):
         for player in [a, b, c, d]:
             player.total_points = sum([player.points for player in player.in_all_rounds()])
 
-    # def set_coordination(self):
-    #     a = self.get_player_by_role('1')
-    #     b = self.get_player_by_role('2')
-    #     c = self.get_player_by_role('3')
-    #     d = self.get_player_by_role('4')
-    #
-    #     for player in [a, b, c, d]:
-    #         if self.coordination == 1 and player.action in player.favorite:
-    #             player.is_winner = True
-    #         else:
-    #             player.is_winner = False
-    #
-    #     for player in [a, b, c, d]:
-    #         if self.coordination == 1:
-    #             if player.is_winner is True:
-    #                 player.points = Constants.highpay
-    #             else:
-    #                 player.points = Constants.lowpay
-    #         else:
-    #             player.points = Constants.nopay
-    #
-    #     for player in [a, b, c, d]:
-    #         player.total_points = sum([player.points for player in player.in_all_rounds()])
-
     def total_points(self):
         players = self.get_players()
         point = [p.points for p in players]
@@ -295,20 +271,6 @@ class Group(BaseGroup):
             else:
                 player.final_pay = 0
 
-    # def finalpay_value(self):
-    #     for player in self.get_players():
-    #         if self.round_number == Constants.num_rounds and self.goal_achieved == 1:
-    #             player.final_pay = (player.chosen_total_points * Constants.total_group_pay)/self.chosen_group_total_points
-    #         else:
-    #             player.final_pay = 0
-
-    # def payoff_value(self):
-    #     for player in self.get_players():
-    #         if self.round_number == Constants.num_rounds:
-    #             player.payoff = player.final_pay
-    #         else:
-    #             player.payoff = 0
-
     def displaying_network(self):
         nodes = [{'data': {'id': i, 'name': i, 'first': self.get_player_by_id(i).first, 'second': self.get_player_by_id(i).second,
                            'action': self.get_player_by_id(i).action, 'old_action': self.get_player_by_id(i).old_action},  'group': 'nodes'} for i in Constants.names]
@@ -366,6 +328,66 @@ class Player(BasePlayer):
         ],
         widget=widgets.RadioSelect
     )
+
+    q_samegroup = models.PositiveIntegerField(
+        choices=[
+            [1, 'Sí'],
+            [2, 'No'],
+        ],
+        widget=widgets.RadioSelect
+    )
+
+
+    q_option = models.PositiveIntegerField(
+        choices=[
+            [1, 'Envía el mismo primer mensaje que los demás participantes en su grupo en la Etapa 1'],
+            [2, 'Envía el mismo segundo mensaje en la Etapa 2 que el primer mensaje que envía en la Etapa 1'],
+            [3, 'Elige la misma opción que los demás participantes en su grupo en la Etapa 3'],
+            [4, 'Elige la misma opción en la Etapa 3 que el mensaje que usted envió en la Etapa 2'],
+        ],
+        widget=widgets.RadioSelect
+    )
+
+    q_points = models.PositiveIntegerField(
+        choices=[
+            [1, 'Los participantes 1 y 2 ganan tres puntos y los participantes 3 y 4 ganan un punto'],
+            [2, 'Los participantes 1 y 2 ganan un punto y los participantes 3 y 4 ganan tres puntos'],
+            [3, 'El participante 3 gana tres puntos y los participantes 1, 2 y 4 ganan un punto'],
+            [4, 'Todos los participantes ganan tres puntos'],
+        ],
+        widget=widgets.RadioSelect
+    )
+
+    q_rounds = models.PositiveIntegerField(
+        choices=[
+            [1, '8'],
+            [2, '20'],
+            [3, '12'],
+            [4, '10'],
+        ],
+        widget=widgets.RadioSelect
+    )
+
+    q_coord = models.PositiveIntegerField(
+        choices=[
+            [1, '8'],
+            [2, '20'],
+            [3, '12'],
+            [4, '10'],
+        ],
+        widget=widgets.RadioSelect
+    )
+
+    q_dollars = models.PositiveIntegerField(
+        choices=[
+            [1, '800 x (55/11) = 4000'],
+            [2, '800 + (55-11) = 844'],
+            [3, '800 x (11/55) = 160'],
+            [4, '800 = 800'],
+        ],
+        widget=widgets.RadioSelect
+    )
+
 
     def role(self):
         return {1: '1', 2: '2', 3: '3', 4: '4'}[self.id_in_group]

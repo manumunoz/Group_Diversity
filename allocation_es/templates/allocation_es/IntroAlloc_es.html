@@ -1,0 +1,121 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 border rounded p-1 mb-0" id="dark_bg">
+            <h1 id="light_txt"> Parte {{ Constants.part_alloc }}. <span id="bright_txt">Asignación</span></h1>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 border rounded" id="light_bg">
+            <br>
+            <h4>Antes de continuar, por favor conteste las siguientes preguntas de comprensión:</h4>
+            <br>
+            <p>
+            <b>1. En la Parte {{ Constants.part_alloc }} va a interactuar con el mismo grupo de participantes de la
+                Parte {{ Constants.part_post_min }}?</b>
+            <br>
+            <small>{% formfield player.q_samegroup label="" %}</small>
+            </p>
+            <p>
+            <b>2. Cuántas asignaciones en su grupo van a ser seleccionadas por el computador?</b>
+            <br>
+            <small>{% formfield player.q_implement label="" %}</small>
+            </p>
+            <p>
+            <b>3. Si su asignación es implementada, cuántos dólares experimentales ganará?</b>
+            <br>
+            <small>{% formfield player.q_gains label="" %}</small>
+            </p>
+            <button type="otree-btn-next" class="btn button btn-md" style="float: right;"> Continuar </button>
+            <br><br>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block styles %}
+    <style type="text/css">
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #medium_bg{
+            background-color: #37474F;
+        }
+
+        #dark_bg{
+            background-color: #006064;
+        }
+        #light_txt{
+            color: #ffffff;
+        }
+        #medium_txt{
+            color: #006064;
+        }
+        #dark_txt{
+            color: #000000;
+        }
+        #bright_txt {
+            color: #FF5722;
+        }
+        .buttonname {
+            background-color: #EEE8AA;
+            color: #000000;
+            border: 1px solid #000000
+        }
+        .button {
+            background-color: #006064;
+            color: #ffffff;
+            border: 2px solid #ffffff
+        }
+        .button:hover {
+            background-color: #FDD835;
+            color: #000000;
+            border: 2px solid #000000;
+        }
+        .button2 {
+            background-color: #FF5722;
+            color: #ffffff;
+            border: 2px solid #ffffff
+        }
+        .button2:hover  {
+            background-color: #B3E5FC;
+            color: #000000;
+            border: 2px solid #000000
+        }
+        #upper{
+            background-color: #000000;
+        }
+        #middle{
+            background-color: #424242;
+        }
+        #lower{
+            color: #EEE8AA
+        }
+        #network{
+            background-color: #ffffff;
+        }
+        #symbol{
+            color: #616161;
+        }
+        .otree-chat__messages {
+            height: 400px;
+        }
+        .otree-chat__nickname {
+            color: #000000;
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}

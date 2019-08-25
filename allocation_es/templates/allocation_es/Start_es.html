@@ -11,25 +11,17 @@
 </div>
 {% endblock %}
 
-
 {% block content %}
 <div class="container">
-    <!-- Coordination Outcome -->
     <div class="row">
-        <div class="col-md-12 border border-dark rounded p-3 mb-1" id="medium_bg">
-            <br>
-            <p id ="light_txt">Escriba en la casilla cuánto de los <span id="bright_txt">{{ Constants.pie }} {{ Constants.exp_currency }}</span>
-                quiere enviarle al participante en su grupo que ha sido aleatoriamente emparejado con usted:</p>
-            <small>{% formfield player.alloc label="" %}</small>
-            <br>
-            <p id="light_txt">Si su asignación es elegida por el computador, la cantidad que no envíe (la cantidad restante de los {{ Constants.pie }} {{ Constants.exp_currency }}) será para usted.</p>
-            <br>
-                <button class="btn button btn-md"> Continuar </button>
+    <!-- Network -->
+        <div class="col-md-12 border border-dark rounded p-3 mb-1" id="dark_bg">
+            <button type="otree-btn-next" class="btn button btn-md"> Comenzar</button>
         </div>
     </div>
 </div>
-
 {% endblock %}
+
 
 {% block styles %}
     <style type="text/css">

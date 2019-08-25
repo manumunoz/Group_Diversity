@@ -34,8 +34,8 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    pass
-
+    def creating_session(self):
+        self.group_randomly()
 
 class Group(BaseGroup):
     min_effort = models.IntegerField()
@@ -77,6 +77,28 @@ class Player(BasePlayer):
     old_effort = models.IntegerField()
     round_gains = models.IntegerField()
     old_round_gains = models.IntegerField()
+
+
+    q_min = models.PositiveIntegerField(
+        choices=[
+            [1, '33'],
+            [2, '17'],
+            [3, '52'],
+            [4, '21'],
+        ],
+        widget=widgets.RadioSelect
+    )
+
+    q_pay = models.PositiveIntegerField(
+        choices=[
+            [1, '60 + 21 – (2 x 17) = 47'],
+            [2, '60 – 17 + (2 x 21) = 85'],
+            [3, '60 – 21 + (2 x 17) = 73'],
+            [4, '60 + 17 – (2 x 21) = 35'],
+        ],
+        widget=widgets.RadioSelect
+    )
+
 
     def role(self):
         return {1: '1', 2: '2', 3: '3', 4: '4'}[self.id_in_group]

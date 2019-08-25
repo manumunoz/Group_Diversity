@@ -30,7 +30,7 @@ class Constants(BaseConstants):
     # CHOSEN ROUNDS
     chosen_num_rounds = 12
     goal_value = 8
-    pay_rounds = [1,2,4,6,7,8,9,12,13,14,15,17]
+    pay_rounds = [2,4,6,7,8,9,12,13,14,15,17,20]
     #==================================
     # Treatment & Group parameters
     others = len(names) - 1
