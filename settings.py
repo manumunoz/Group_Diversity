@@ -127,38 +127,38 @@ SESSION_CONFIG_DEFAULTS = {
 }
 
 SESSION_CONFIGS = [
-    {
-        'name': 'min_effort_es',
-        'display_name': "min_effort_es",
-        'num_demo_participants': 4,
-        'app_sequence': ['min_effort_es'],
-        # 'treatment': 1,
-        # 'use_browser_bots': True
-    },
-    {
-        'name': 'min_effort_2_es',
-        'display_name': "min_effort_2_es",
-        'num_demo_participants': 4,
-        'app_sequence': ['min_effort_2_es'],
-        # 'treatment': 1,
-        # 'use_browser_bots': True
-    },
-    {
-        'name': 'group_spillover_es',
-        'display_name': "group_spillover_es",
-        'num_demo_participants': 4,
-        'app_sequence': ['group_spillover_es'],
-        # 'treatment': 2,
-        # 'use_browser_bots': True
-    },
-    {
-        'name': 'allocation_es',
-        'display_name': "allocation_es",
-        'num_demo_participants': 4,
-        'app_sequence': ['allocation_es'],
-        # 'treatment': 1,
-        # 'use_browser_bots': True
-    },
+    # {
+    #     'name': 'min_effort_es',
+    #     'display_name': "min_effort_es",
+    #     'num_demo_participants': 4,
+    #     'app_sequence': ['min_effort_es'],
+    #     # 'treatment': 1,
+    #     # 'use_browser_bots': True
+    # },
+    # {
+    #     'name': 'min_effort_2_es',
+    #     'display_name': "min_effort_2_es",
+    #     'num_demo_participants': 4,
+    #     'app_sequence': ['min_effort_2_es'],
+    #     # 'treatment': 1,
+    #     # 'use_browser_bots': True
+    # },
+    # {
+    #     'name': 'group_spillover_es',
+    #     'display_name': "group_spillover_es",
+    #     'num_demo_participants': 4,
+    #     'app_sequence': ['group_spillover_es'],
+    #     # 'treatment': 2,
+    #     # 'use_browser_bots': True
+    # },
+    # {
+    #     'name': 'allocation_es',
+    #     'display_name': "allocation_es",
+    #     'num_demo_participants': 4,
+    #     'app_sequence': ['allocation_es'],
+    #     # 'treatment': 1,
+    #     # 'use_browser_bots': True
+    # },
     {
         'name': 'low_diversity_es',
         'display_name': "Low Diversity ES",
@@ -181,7 +181,7 @@ SESSION_CONFIGS = [
         'num_demo_participants': 8,
         'app_sequence': ['min_effort_es', 'group_spillover_es', 'min_effort_2_es', 'allocation_es', 'pay_es'],
         'treatment': 3,
-        'use_browser_bots': True
+        # 'use_browser_bots': True
     },
     # {
     #     'name': 'min_effort',
