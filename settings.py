@@ -184,6 +184,14 @@ SESSION_CONFIGS = [
         # 'use_browser_bots': True
     },
     # {
+    #     'name': 'iq_test_v1',
+    #     'display_name': "iq_test_v1",
+    #     'num_demo_participants': 4,
+    #     'app_sequence': ['iq_test_v1'],
+    #     # 'treatment': 1,
+    #     # 'use_browser_bots': True
+    # },
+    # {
     #     'name': 'min_effort',
     #     'display_name': "min_effort",
     #     'num_demo_participants': 4,
