@@ -13,7 +13,7 @@ Group Spillovers: Pay
 
 class Constants(BaseConstants):
     #------------------------------------------
-    name_in_url = 'pay'
+    name_in_url = 'pay_es'
     names = ['1', '2', '3', '4']
     players_per_group = len(names)
     periods = 1
