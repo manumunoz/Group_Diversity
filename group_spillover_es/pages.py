@@ -6,55 +6,55 @@ from collections import OrderedDict
 import json
 import itertools
 
-class BeginWP(WaitPage):
-    wait_for_all_groups = True
-
-class Begin_es(Page):
-    def is_displayed(self):
-        return self.round_number == 1
-        pass
-
-class IntroWP(WaitPage):
-    wait_for_all_groups = True
-
-class IntroCoord_es(Page):
-    def is_displayed(self):
-        return self.round_number == 1
-
-    form_model = 'player'
-    form_fields = ['q_samegroup','q_option','q_points','q_rounds','q_coord','q_dollars']
-
-    def q_samegroup_error_message(self, value):
-        if value != 2:
-            return 'El grupo de participantes con el que usted interactúa en la Parte 1 es distinto al grupo de la Parte 2'
-
-    def q_option_error_message(self, value):
-        if value != 3:
-            return 'Usted gana puntos si todos los participantes en su grupo coordinan en la misma opción en la Etapa 3'
-
-    def q_points_error_message(self, value):
-        if self.player.treat == 1:
-            if value != 4:
-                return 'Por favor revise la sección de Puntos en las instrucciones'
-        elif self.player.treat == 2:
-            if value != 2:
-                return 'Por favor revise la sección de Puntos en las instrucciones'
-        elif self.player.treat == 3:
-            if value != 3:
-                return 'Por favor revise la sección de Puntos en las instrucciones'
-
-    def q_rounds_error_message(self, value):
-        if value != 3:
-            return 'Por favor revise la sección de Ganancias en las instrucciones'
-
-    def q_coord_error_message(self, value):
-        if value != 1:
-            return 'Por favor revise la sección de Ganancias en las instrucciones'
-
-    def q_dollars_error_message(self, value):
-        if value != 3:
-            return 'Por favor revise la sección de Ganancias en las instrucciones'
-
+# class BeginWP(WaitPage):
+#     wait_for_all_groups = True
+#
+# class Begin_es(Page):
+#     def is_displayed(self):
+#         return self.round_number == 1
+#         pass
+#
+# class IntroWP(WaitPage):
+#     wait_for_all_groups = True
+#
+# class IntroCoord_es(Page):
+#     def is_displayed(self):
+#         return self.round_number == 1
+#
+#     form_model = 'player'
+#     form_fields = ['q_samegroup','q_option','q_points','q_rounds','q_coord','q_dollars']
+#
+#     def q_samegroup_error_message(self, value):
+#         if value != 2:
+#             return 'El grupo de participantes con el que usted interactúa en la Parte 1 es distinto al grupo de la Parte 2'
+#
+#     def q_option_error_message(self, value):
+#         if value != 3:
+#             return 'Usted gana puntos si todos los participantes en su grupo coordinan en la misma opción en la Etapa 3'
+#
+#     def q_points_error_message(self, value):
+#         if self.player.treat == 1:
+#             if value != 4:
+#                 return 'Por favor revise la sección de Puntos en las instrucciones'
+#         elif self.player.treat == 2:
+#             if value != 2:
+#                 return 'Por favor revise la sección de Puntos en las instrucciones'
+#         elif self.player.treat == 3:
+#             if value != 3:
+#                 return 'Por favor revise la sección de Puntos en las instrucciones'
+#
+#     def q_rounds_error_message(self, value):
+#         if value != 3:
+#             return 'Por favor revise la sección de Ganancias en las instrucciones'
+#
+#     def q_coord_error_message(self, value):
+#         if value != 1:
+#             return 'Por favor revise la sección de Ganancias en las instrucciones'
+#
+#     def q_dollars_error_message(self, value):
+#         if value != 3:
+#             return 'Por favor revise la sección de Ganancias en las instrucciones'
+#
 
 class StartWP(WaitPage):
     wait_for_all_groups = True
@@ -138,7 +138,7 @@ class Action_es(Page):
         group.total_four = sum(fours)
 
 
-class LastPageWaitPage(WaitPage):
+class LastPageWP(WaitPage):
     def after_all_players_arrive(self):
         self.group.displaying_network()
         self.group.determine_win()
@@ -157,7 +157,7 @@ class LastPage_es(Page):
         return self.round_number == Constants.num_rounds
 
 
-class ResultsWaitPage(WaitPage):
+class ResultsWP(WaitPage):
     pass
 
 
@@ -170,10 +170,10 @@ class Results_es(Page):
 
 
 page_sequence = [
-    BeginWP,
-    Begin_es,
-    IntroWP,
-    IntroCoord_es,
+    # BeginWP,
+    # Begin_es,
+    # IntroWP,
+    # IntroCoord_es,
     StartWP,
     Start_es,
     BeforeSignalWP,
@@ -182,8 +182,8 @@ page_sequence = [
     SecondSignal_es,
     BeforeActionlWP,
     Action_es,
-    LastPageWaitPage,
+    LastPageWP,
     LastPage_es,
-    ResultsWaitPage,
+    ResultsWP,
     Results_es
 ]

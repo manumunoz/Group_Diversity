@@ -143,14 +143,30 @@ SESSION_CONFIGS = [
     #     # 'treatment': 1,
     #     # 'use_browser_bots': True
     # },
-    # {
-    #     'name': 'group_spillover_es',
-    #     'display_name': "group_spillover_es",
-    #     'num_demo_participants': 4,
-    #     'app_sequence': ['group_spillover_es'],
-    #     # 'treatment': 2,
-    #     # 'use_browser_bots': True
-    # },
+    {
+        'name': 'group_spillover_intro',
+        'display_name': "group_spillover_intro",
+        'num_demo_participants': 4,
+        'app_sequence': ['group_spillover_intro'],
+        'treatment': 2,
+        # 'use_browser_bots': True
+    },
+    {
+        'name': 'group_spillover_es',
+        'display_name': "group_spillover_es",
+        'num_demo_participants': 12,
+        'app_sequence': ['group_spillover_es'],
+        'treatment': 2,
+        # 'use_browser_bots': True
+    },
+    {
+        'name': 'group_spillover_full',
+        'display_name': "group_spillover_full",
+        'num_demo_participants': 28,
+        'app_sequence': ['group_spillover_es','group_spillover_end'],
+        'treatment': 2,
+        # 'use_browser_bots': True
+    },
     # {
     #     'name': 'allocation_es',
     #     'display_name': "allocation_es",
@@ -163,7 +179,7 @@ SESSION_CONFIGS = [
         'name': 'low_diversity_es',
         'display_name': "Low Diversity ES",
         'num_demo_participants': 8,
-        'app_sequence': ['min_effort_es', 'group_spillover_es', 'min_effort_2_es', 'allocation_es', 'pay_es'],
+        'app_sequence': ['min_effort_es', 'group_spillover_intro', 'group_spillover_es', 'min_effort_2_es', 'allocation_es', 'pay_es'],
         'treatment': 1,
         # 'use_browser_bots': True
     },
@@ -171,7 +187,7 @@ SESSION_CONFIGS = [
         'name': 'medium_diversity_es',
         'display_name': "Mediumd Diversity ES",
         'num_demo_participants': 4,
-        'app_sequence': ['min_effort_es', 'group_spillover_es', 'min_effort_2_es', 'allocation_es', 'pay_es'],
+        'app_sequence': ['min_effort_es', 'group_spillover_intro', 'group_spillover_es', 'min_effort_2_es', 'allocation_es', 'pay_es'],
         'treatment': 2,
         # 'use_browser_bots': True
     },
@@ -179,7 +195,7 @@ SESSION_CONFIGS = [
         'name': 'high_diversity_es',
         'display_name': "High Diversity ES",
         'num_demo_participants': 8,
-        'app_sequence': ['min_effort_es', 'group_spillover_es', 'min_effort_2_es', 'allocation_es', 'pay_es'],
+        'app_sequence': ['min_effort_es', 'group_spillover_intro', 'group_spillover_es', 'min_effort_2_es', 'allocation_es', 'pay_es'],
         'treatment': 3,
         # 'use_browser_bots': True
     },
